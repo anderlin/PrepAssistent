@@ -1,146 +1,146 @@
 # PrepAssistent
 
-Home-Assistant-Integration zum Anlegen und Verwalten von Vorratskammern: Lebensmittel, Getränke, Hausapotheke, Drogerie & Co. – mit Ablaufwarnungen, Dashboard und Vorlagen, die Einkaufslisten für eine beliebige Zahl von Personen und Tagen automatisch berechnen.
+Home Assistant integration for creating and managing stockpiles: food, drinks, first aid supplies, toiletries and more – with expiry warnings, a dashboard, and templates that automatically calculate shopping lists for any number of people and days.
 
-## Funktionen
+## Features
 
-- **Mehrere Vorratslisten** (z. B. „Keller“, „Hausapotheke“, „Notvorrat“)
-- **Artikel** mit Kategorie, Menge, Soll-Menge, Einheit, Lagerort, Notizen, **Anschaffungsdatum** und **Ablaufdatum**
-- **Chargen**: Gleicher Artikel mehrfach mit unterschiedlichen Ablaufdaten („Duplizieren“)
-- **Geöffnet am**: Eine Einheit als geöffnet markieren – sie wird als eigene Charge abgetrennt, mit „nach dem Öffnen haltbar (Tage)“ gilt das frühere Ablaufdatum
-- **Reichweite**: Wie viele Tage reichen Nahrung (kcal) und Trinkwasser für den Haushalt? Als Karte in der Übersicht, pro Liste und als Sensor
-- **Einkaufsliste in HA**: fehlende Artikel als To-do-Liste – abhaken bucht ein, per Sprachassistent hinzufügen
-- **Mehrfachauswahl**: mehrere Artikel auf einmal als gekauft erfassen, verschieben, Kategorie/Lagerort setzen oder löschen
-- **Verwalten**: eigene Kategorien (Name, Icon, Reihenfolge) und Lagerorte (umbenennen, löschen, als Filter)
-- **Lovelace-Karte** `custom:prep-assistent-card` für eigene Dashboards
-- **Ablaufwarnungen**: tägliche Prüfung zur eingestellten Uhrzeit → HA-Benachrichtigung, optionale Push-Nachricht (`notify.*`) und Event `prep_assistent_expiry` für eigene Automationen
-- **Dashboard** in der Seitenleiste: Kennzahlen, „Ablauf im Blick“, Kategorien, Listen mit Erfüllungsgrad
-- **Vorlagen** (JSON/YAML): Personen und Tage wählen → Mengen werden berechnet → als Einkaufsliste übernehmen
-- **Einkaufsliste**: Filter auf fehlende Mengen, „Als gekauft erfassen“ setzt Menge, Kaufdatum und (falls hinterlegt) Ablaufdatum
-- **Sensoren** für eigene Dashboards/Automationen
-- **Services** für Automationen und Sprachassistenten
-- **Mehrsprachig**: Deutsch, Englisch, Französisch, Spanisch, Italienisch, Russisch, Dänisch, Norwegisch, Schwedisch, Ungarisch, Griechisch
+- **Multiple stock lists** (e.g. "Basement", "Medicine cabinet", "Emergency supply")
+- **Items** with category, quantity, target quantity, unit, storage location, notes, **purchase date** and **expiry date**
+- **Batches**: the same item several times with different expiry dates ("Duplicate")
+- **Opened on**: mark one unit as opened – it is split off as its own batch; with "use within after opening (days)" the earlier expiry date applies
+- **Supply range**: how many days will food (kcal) and drinking water last for your household? Shown as a card in the overview, per list and as a sensor
+- **Shopping list in HA**: missing items as a to-do list – checking an item off records it as bought, items can be added via voice assistant
+- **Bulk selection**: record several items as bought at once, move them, set category/location or delete them
+- **Manage**: custom categories (name, icon, order) and storage locations (rename, delete, use as filter)
+- **Lovelace card** `custom:prep-assistent-card` for your own dashboards
+- **Expiry warnings**: daily check at the configured time → HA notification, optional push message (`notify.*`) and event `prep_assistent_expiry` for your own automations
+- **Dashboard** in the sidebar: key figures, "Expiry at a glance", categories, lists with fill level
+- **Templates** (JSON/YAML): choose people and days → quantities are calculated → apply as a shopping list
+- **Shopping list filter**: show missing quantities only; "Record as bought" sets quantity, purchase date and (if configured) expiry date
+- **Sensors** for your own dashboards/automations
+- **Services** for automations and voice assistants
+- **Multilingual**: German, English, French, Spanish, Italian, Russian, Danish, Norwegian, Swedish, Hungarian, Greek
 
-## Sprachen
+## Languages
 
-| Bereich | Sprache |
+| Area | Language |
 | --- | --- |
-| Panel (Oberfläche, Datums- und Zahlenformat) | Sprache des angemeldeten HA-Benutzers |
-| Vorlagen-Vorschau und übernommene Artikel | Sprache des Benutzers, der die Vorlage übernimmt |
-| Benachrichtigungen, Name der ersten Liste, Service-Fehler | Systemsprache von Home Assistant |
-| Einrichtung, Sensoren, Services | HA-Übersetzungen (`translations/`) |
+| Panel (UI, date and number format) | Language of the logged-in HA user |
+| Template preview and applied items | Language of the user applying the template |
+| Notifications, name of the first list, service errors | Home Assistant system language |
+| Setup, sensors, services | HA translations (`translations/`) |
 
-Nicht unterstützte Sprachen fallen auf Englisch zurück. Bereits angelegte Artikel und Listen behalten ihren Namen – beim erneuten Übernehmen einer Vorlage werden sie aber auch nach einem Sprachwechsel wiedererkannt.
+Unsupported languages fall back to English. Existing items and lists keep their names – but when a template is applied again, they are recognised even after a language change.
 
-Die Texte des Panels und des Backends liegen in `custom_components/prep_assistent/frontend/i18n/<sprache>.json`. Für eine neue Sprache die Datei `en.json` kopieren, übersetzen und den Sprachcode in `i18n.py` (`LANGUAGES`) und im Panel (`LANGUAGES`) ergänzen. Pluralformen sind Objekte mit den [CLDR-Kategorien](https://cldr.unicode.org/index/cldr-spec/plural-rules) (`one`, `few`, `many`, `other`).
+Panel and backend texts live in `custom_components/prep_assistent/frontend/i18n/<language>.json`. To add a language, copy `en.json`, translate it and add the language code to `i18n.py` (`LANGUAGES`) and to `frontend/prep-common.js` (`LANGUAGES`). Plural forms are objects with the [CLDR categories](https://cldr.unicode.org/index/cldr-spec/plural-rules) (`one`, `few`, `many`, `other`).
 
 ## Installation
 
-### HACS (benutzerdefiniertes Repository)
+### HACS (custom repository)
 
-1. HACS → Integrationen → ⋮ → *Benutzerdefinierte Repositories* → Repository-URL eintragen, Typ *Integration*
-2. „PrepAssistent“ installieren, Home Assistant neu starten
-3. *Einstellungen → Geräte & Dienste → Integration hinzufügen → PrepAssistent*
+1. HACS → Integrations → ⋮ → *Custom repositories* → enter `https://github.com/anderlin/PrepAssistent`, type *Integration*
+2. Install "PrepAssistent", restart Home Assistant
+3. *Settings → Devices & services → Add integration → PrepAssistent*
 
-### Manuell
+### Manual
 
-Den Ordner `custom_components/prep_assistent` nach `<config>/custom_components/` kopieren, HA neu starten und die Integration hinzufügen.
+Copy the folder `custom_components/prep_assistent` to `<config>/custom_components/`, restart HA and add the integration.
 
-Voraussetzung: Home Assistant **2025.2** oder neuer.
+Requirement: Home Assistant **2025.2** or newer.
 
-## Einstellungen
+## Options
 
-| Option | Bedeutung | Standard |
+| Option | Meaning | Default |
 | --- | --- | --- |
-| Warnvorlauf | Ab wie vielen Tagen vor Ablauf ein Artikel als „läuft bald ab“ gilt | 30 |
-| Uhrzeit der täglichen Prüfung | Wann gewarnt wird | 08:00 |
-| Benachrichtigung in HA | Dauerhafte Benachrichtigung in der HA-Oberfläche | an |
-| Push-Benachrichtigungsdienst | z. B. `notify.mobile_app_mein_handy` | leer |
-| Personen im Haushalt | Grundlage der Reichweite (im Panel temporär änderbar) | 2 |
-| Energiebedarf pro Person und Tag | für die Reichweite der Nahrung | 2200 kcal |
-| Trinkwasser pro Person und Tag | für die Reichweite des Wassers | 2 l |
+| Warning lead time | How many days before expiry an item counts as "expiring soon" | 30 |
+| Time of daily check | When warnings are sent | 08:00 |
+| Home Assistant notification | Persistent notification in the HA UI | on |
+| Push notify service | e.g. `notify.mobile_app_my_phone` | empty |
+| People in household | Basis for the supply range (can be changed temporarily in the panel) | 2 |
+| Energy need per person and day | For the food supply range | 2200 kcal |
+| Drinking water per person and day | For the water supply range | 2 l |
 
-## Einkaufsliste (To-do)
+## Shopping list (to-do)
 
-Die Entität `todo.prepassistent_einkaufsliste` (Name je nach Systemsprache) enthält alle Artikel, deren Menge unter der Soll-Menge liegt, z. B. „Reis (2 kg)“ mit Liste und Lagerort als Beschreibung. Sie erscheint in *Einstellungen → To-do-Listen*, in der HA-App und kann mit der To-do-Karte auf Dashboards gezeigt werden.
+The entity `todo.prepassistent_shopping_list` (name depends on the system language) contains every item whose quantity is below its target quantity, e.g. "Rice (2 kg)", with list and storage location as description. It appears under *Settings → To-do lists*, in the HA app, and can be shown on dashboards with the to-do card.
 
-| Aktion | Wirkung |
+| Action | Effect |
 | --- | --- |
-| Abhaken | Als gekauft erfasst: Menge = Soll-Menge, Kaufdatum heute, Ablaufdatum aus „Haltbarkeit ab Kauf“ |
-| Hinzufügen (auch per Assist: „Füge Kaffee zur Einkaufsliste hinzu“) | Bekannter Artikel: Soll-Menge +1 über Bestand. Neuer Artikel: wird in der ersten Liste mit Menge 0 und Soll 1 angelegt |
-| Entfernen | Nur der Bedarf entfällt (Soll = Bestand), der Artikel bleibt erhalten |
+| Check off | Recorded as bought: quantity = target quantity, purchase date today, expiry date from "shelf life after purchase" |
+| Add (also via Assist: "Add coffee to the shopping list") | Known item: target quantity +1 above stock. New item: created in the first list with quantity 0 and target 1 |
+| Remove | Only the need is removed (target = stock), the item itself is kept |
 
-## Reichweite
+## Supply range
 
-Bei jedem Artikel lassen sich unter *Weitere Angaben* **kcal pro Einheit** und **Liter Trinkwasser pro Einheit** hinterlegen (Beispiel: Reis in kg → 3500 kcal, Mineralwasser in l → 1). Die Notvorrat-Vorlagen bringen diese Werte mit.
+For each item you can enter **kcal per unit** and **litres of drinking water per unit** under *More details* (example: rice in kg → 3500 kcal, mineral water in l → 1). The emergency supply templates include these values.
 
 ```
-Reichweite Nahrung = Σ Menge × kcal pro Einheit ÷ (Personen × kcal pro Tag)
-Reichweite Wasser  = Σ Menge × Liter pro Einheit ÷ (Personen × Liter pro Tag)
-Reichweite         = Minimum aus beiden (fehlen Angaben für einen Wert, zählt nur der andere)
+Food range  = Σ quantity × kcal per unit ÷ (people × kcal per day)
+Water range = Σ quantity × litres per unit ÷ (people × litres per day)
+Range       = minimum of both (if one of them has no data, only the other counts)
 ```
 
-Abgelaufene Artikel zählen nicht mit. Die Übersicht zeigt die Reichweite für die eingestellte Haushaltsgröße; die Personenzahl lässt sich dort zum Durchspielen ändern.
+Expired items are not counted. The overview shows the range for the configured household size; you can change the number of people there to try out scenarios.
 
-## Lovelace-Karte
+## Lovelace card
 
-Die Karte wird automatisch geladen (keine Ressource nötig) und erscheint im Kartenauswahldialog als „PrepAssistent“. Alle Optionen sind im visuellen Editor einstellbar:
+The card is loaded automatically (no resource needed) and appears as "PrepAssistent" in the card picker. All options can be set in the visual editor:
 
 ```yaml
 type: custom:prep-assistent-card
-title: Vorrat            # optional
-list: Keller             # optional: Name oder ID einer Liste, leer = alle Listen
-show_stats: true         # Kennzahlen
-show_range: true         # Reichweite
-show_attention: true     # Ablauf im Blick
-show_shopping: true      # Einkaufsliste mit Abhaken
-max_items: 5             # Einträge je Bereich
+title: Pantry            # optional
+list: Basement           # optional: name or ID of a list, empty = all lists
+show_stats: true         # key figures
+show_range: true         # supply range
+show_attention: true     # expiry at a glance
+show_shopping: true      # shopping list with check-off
+max_items: 5             # entries per section
 ```
 
-## Vorlagen
+## Templates
 
-Mitgelieferte Beispielvorlagen liegen in `custom_components/prep_assistent/templates/`.
-**Eigene Vorlagen** gehören nach `<config>/prep_assistent/templates/` (wird beim ersten Start angelegt) und bleiben bei Updates erhalten. Eine eigene Vorlage mit gleicher `id` ersetzt eine mitgelieferte. Nach Änderungen im Tab *Vorlagen* auf „Neu laden“ klicken.
+Bundled example templates live in `custom_components/prep_assistent/templates/`.
+**Your own templates** go into `<config>/prep_assistent/templates/` (created on first start) and survive updates. A custom template with the same `id` replaces a bundled one. After changes, click "Reload" in the *Templates* tab.
 
 ### Format
 
 ```yaml
-id: notvorrat_familie          # optional, sonst Dateiname
-name: Notvorrat Familie        # oder mehrsprachig, siehe unten
-description: Kurzbeschreibung
-default_persons: 4             # Vorbelegung im Dialog
+id: emergency_family           # optional, otherwise the file name
+name: Emergency supply family  # or multilingual, see below
+description: Short description
+default_persons: 4             # preset in the dialog
 default_days: 14
-categories:                    # optional: zusätzliche Kategorien
+categories:                    # optional: additional categories
   - id: baby
-    name: Babybedarf
+    name: Baby supplies
     icon: mdi:baby-bottle
 items:
-  - name: Trinkwasser
+  - name: Drinking water
     category: getraenke
     unit: l
-    per_person_per_day: 2      # 2 l pro Person und Tag
-    shelf_life_days: 365       # optional: Vorschlag fürs Ablaufdatum beim Kauf
-    water_per_unit: 1          # optional: Liter Trinkwasser je Einheit (Reichweite)
-  - name: Reis
+    per_person_per_day: 2      # 2 l per person and day
+    shelf_life_days: 365       # optional: suggested expiry date when buying
+    water_per_unit: 1          # optional: litres of drinking water per unit (supply range)
+  - name: Rice
     category: lebensmittel
     unit: kg
     per_person_per_day: 0.1
-    step: 0.5                  # auf 0,5 kg aufrunden
-    kcal_per_unit: 3500        # optional: kcal je Einheit (Reichweite)
-  - name: Erste-Hilfe-Set
+    step: 0.5                  # round up to 0.5 kg
+    kcal_per_unit: 3500        # optional: kcal per unit (supply range)
+  - name: First aid kit
     category: hausapotheke
-    unit: pcs                  # Einheiten-Code, wird übersetzt (Stk, pcs, шт. …)
-    fixed: 1                   # unabhängig von Personen/Tagen
-  - name: Windeln
+    unit: pcs                  # unit code, gets translated (Stk, pcs, шт. …)
+    fixed: 1                   # independent of people/days
+  - name: Nappies
     category: baby
     unit: pcs
     per_day: 6
-    notes: nur bei Kleinkind
+    notes: only with a toddler
 ```
 
-### Mehrsprachige Vorlagen
+### Multilingual templates
 
-`name`, `description`, `notes` und `unit` dürfen statt eines Strings ein Sprach-Objekt sein. Angezeigt wird die Sprache des Benutzers, sonst Englisch, sonst Deutsch:
+`name`, `description`, `notes` and `unit` may be a language object instead of a string. The user's language is shown, otherwise English, otherwise German:
 
 ```yaml
 name: {de: "Notvorrat", en: "Emergency supply", fr: "Réserve d'urgence"}
@@ -153,76 +153,76 @@ items:
       en: Buy vacuum-packed
 ```
 
-**Einheiten-Codes** (werden automatisch übersetzt): `pcs`, `kg`, `g`, `l`, `ml`, `pack`, `can`, `jar`, `bottle`, `roll`, `tube`, `bar`, `box`, `pair`, `bag`, `folder`, `daily_dose`, `eur`. Jeder andere Text wird unverändert übernommen.
+**Unit codes** (translated automatically): `pcs`, `kg`, `g`, `l`, `ml`, `pack`, `can`, `jar`, `bottle`, `roll`, `tube`, `bar`, `box`, `pair`, `bag`, `folder`, `daily_dose`, `eur`. Any other text is used as is.
 
-### Berechnung
+### Calculation
 
 ```
-Menge = fixed + per_person × Personen + per_day × Tage + per_person_per_day × Personen × Tage
+quantity = fixed + per_person × people + per_day × days + per_person_per_day × people × days
 ```
 
-Danach wird auf `step` gerundet (Standard `1`, `round`: `up` (Standard) | `nearest` | `down`) und mindestens `min` verwendet. Positionen mit Menge 0 entfallen.
+The result is then rounded to `step` (default `1`, `round`: `up` (default) | `nearest` | `down`) and at least `min` is used. Positions with quantity 0 are dropped.
 
-Beispiele: `per_person: 0.25` mit Standard-Rundung → 1 Stück je angefangene 4 Personen. `fixed: 8, per_person: 4, step: 4` → Batterien in 4er-Packs.
+Examples: `per_person: 0.25` with default rounding → 1 piece per started group of 4 people. `fixed: 8, per_person: 4, step: 4` → batteries in packs of 4.
 
-Weitere optionale Felder je Artikel: `opened_shelf_life_days` (nach dem Öffnen haltbar, Tage). `shelf_life_days`, `opened_shelf_life_days`, `kcal_per_unit` und `water_per_unit` werden beim Übernehmen in die Artikel kopiert; bei bestehenden Artikeln nur, wenn dort noch kein Wert eingetragen ist.
+Further optional fields per item: `opened_shelf_life_days` (use within after opening, days). `shelf_life_days`, `opened_shelf_life_days`, `kcal_per_unit` and `water_per_unit` are copied into the items when applying a template; for existing items only if no value is set there yet.
 
-Kategorie-IDs (Standard): `lebensmittel`, `getraenke`, `hausapotheke`, `drogerie`, `haushalt`, `dokumente`, `tiere`, `sonstiges`.
+Category IDs (default): `lebensmittel` (food), `getraenke` (drinks), `hausapotheke` (first aid), `drogerie` (toiletries), `haushalt` (household & energy), `dokumente` (documents & cash), `tiere` (pets), `sonstiges` (other).
 
-Beim Übernehmen in eine **bestehende** Liste erhalten Artikel mit gleichem Namen und gleicher Einheit die neue Soll-Menge; alle anderen werden mit Menge 0 als Einkaufsposition angelegt.
+When applying to an **existing** list, items with the same name and unit get the new target quantity; all others are created with quantity 0 as shopping positions.
 
-## Sensoren
+## Sensors
 
-| Entität | Inhalt |
+| Entity | Content |
 | --- | --- |
-| Artikel auf Lager | Anzahl Artikel mit Menge > 0 |
-| Läuft bald ab | Anzahl, Attribut `items` |
-| Abgelaufen | Anzahl, Attribut `items` |
-| Fehlende Artikel | Anzahl Artikel unter Soll-Menge, Attribut `items` |
-| Nächstes Ablaufdatum | Datum, Attribute zum Artikel |
-| Reichweite | Tage (Minimum aus Nahrung und Wasser), Attribute `kcal`, `water`, `persons` … |
-| Reichweite Nahrung / Wasser | Tage je Bereich |
-| Einkaufsliste (`todo`) | Anzahl fehlender Artikel, siehe oben |
+| Items in stock | Number of items with quantity > 0 |
+| Expiring soon | Count, attribute `items` |
+| Expired | Count, attribute `items` |
+| Missing items | Number of items below target quantity, attribute `items` |
+| Next expiry date | Date, attributes of the item |
+| Supply range | Days (minimum of food and water), attributes `kcal`, `water`, `persons` … |
+| Food / water supply range | Days per area |
+| Shopping list (`todo`) | Number of missing items, see above |
 
-Ablaufdaten in Sensoren und Events sind die maßgeblichen Daten – bei geöffneten Artikeln das Datum „geöffnet + haltbar nach dem Öffnen“, falls es früher liegt (Attribut `opened: true`).
+Expiry dates in sensors and events are the effective dates – for opened items the date "opened + use within after opening" if it is earlier (attribute `opened: true`).
 
 ## Services
 
-| Service | Zweck |
+| Service | Purpose |
 | --- | --- |
-| `prep_assistent.add_item` | Artikel anlegen (Liste per Name oder ID) |
-| `prep_assistent.consume_item` | Bestand reduzieren – per Name wird die zuerst ablaufende Charge genommen |
-| `prep_assistent.apply_template` | Vorlage berechnen und übernehmen |
-| `prep_assistent.check_expiry` | Ablaufprüfung sofort ausführen |
-| `prep_assistent.reload_templates` | Vorlagendateien neu laden |
+| `prep_assistent.add_item` | Create an item (list by name or ID) |
+| `prep_assistent.consume_item` | Reduce stock – by name, the batch expiring first is used |
+| `prep_assistent.apply_template` | Calculate and apply a template |
+| `prep_assistent.check_expiry` | Run the expiry check immediately |
+| `prep_assistent.reload_templates` | Reload template files |
 
-### Beispiel-Automation: Push bei Ablaufwarnung
+### Example automation: push on expiry warning
 
 ```yaml
 triggers:
   - trigger: event
     event_type: prep_assistent_expiry
 actions:
-  - action: notify.mobile_app_mein_handy
+  - action: notify.mobile_app_my_phone
     data:
-      title: "Vorrat prüfen"
+      title: "Check your supplies"
       message: >
-        {{ trigger.event.data.expired | count }} abgelaufen,
-        {{ trigger.event.data.expiring | count }} laufen bald ab.
+        {{ trigger.event.data.expired | count }} expired,
+        {{ trigger.event.data.expiring | count }} expiring soon.
 ```
 
-## Entwicklung
+## Development
 
-### Lokal ausprobieren (Docker)
+### Try it locally (Docker)
 
 ```bash
-docker compose up -d          # startet HA auf http://localhost:8123
-docker compose restart        # nach Python-Änderungen
-docker compose logs -f        # Logs (PrepAssistent auf debug)
-docker compose down           # stoppen
+docker compose up -d          # starts HA on http://localhost:8123
+docker compose restart        # after Python changes
+docker compose logs -f        # logs (PrepAssistent at debug level)
+docker compose down           # stop
 ```
 
-Der Integrationsordner wird direkt in den Container eingebunden, die HA-Konfiguration liegt in `.dev/config/`. Beim ersten Start einen Benutzer anlegen, dann *Einstellungen → Geräte & Dienste → Integration hinzufügen → PrepAssistent*. Änderungen am Panel (JS) brauchen nur einen Browser-Reload ohne Cache (Cmd+Shift+R).
+The integration folder is mounted directly into the container; the HA configuration lives in `.dev/config/`. On first start, create a user, then *Settings → Devices & services → Add integration → PrepAssistent*. Changes to the panel (JS) only need a browser reload without cache (Cmd+Shift+R).
 
 ### Tests
 
@@ -231,6 +231,6 @@ python3 -m venv .venv && .venv/bin/pip install -e ".[test]"
 .venv/bin/pytest
 ```
 
-Das Panel (`frontend/prep-assistent-panel.js`) ist ein Web Component ohne Build-Schritt. Daten laufen über die WebSocket-API (`prep_assistent/*`), Änderungen werden live an alle offenen Panels verteilt.
+The panel (`frontend/prep-assistent-panel.js`) and the card (`frontend/prep-assistent-card.js`) are web components without a build step and share helpers from `frontend/prep-common.js`. Data flows through the WebSocket API (`prep_assistent/*`); changes are pushed live to all open panels and cards.
 
-> Die mitgelieferten Vorlagen sind Beispiele (angelehnt an die Empfehlungen des BBK) und ersetzen keine individuelle Planung.
+> The bundled templates are examples (based on the recommendations of the German Federal Office of Civil Protection, BBK) and do not replace individual planning.
