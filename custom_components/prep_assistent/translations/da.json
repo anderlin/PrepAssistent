@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Administrer forråd, husapotek og meget mere. Efter opsætningen vises PrepAssistent i sidepanelet.",
+        "data": {
+          "warning_days": "Advarselsfrist",
+          "notify_time": "Tidspunkt for daglig kontrol",
+          "persistent_notification": "Home Assistant-notifikation",
+          "notify_service": "Push-notifikationstjeneste (valgfri)",
+          "household_persons": "Personer i husstanden",
+          "kcal_per_day": "Energibehov pr. person og dag",
+          "water_per_day": "Drikkevand pr. person og dag"
+        },
+        "data_description": {
+          "warning_days": "Hvor mange dage før udløb en vare regnes som snart udløbet.",
+          "notify_time": "Udløbsdatoer kontrolleres dagligt på dette tidspunkt.",
+          "persistent_notification": "Viser udløbne og snart udløbne varer som en vedvarende notifikation.",
+          "notify_service": "f.eks. notify.mobile_app_min_telefon – lad feltet være tomt for ingen push.",
+          "household_persons": "Grundlag for lagerets rækkevidde.",
+          "kcal_per_day": "Tyske BBK's beregningsgrundlag: 2200 kcal.",
+          "water_per_day": "Tyske BBK's anbefaling: 2 liter (heraf 0,5 l til madlavning)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent er allerede konfigureret."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Indstillinger for PrepAssistent",
+        "data": {
+          "warning_days": "Advarselsfrist",
+          "notify_time": "Tidspunkt for daglig kontrol",
+          "persistent_notification": "Home Assistant-notifikation",
+          "notify_service": "Push-notifikationstjeneste (valgfri)",
+          "household_persons": "Personer i husstanden",
+          "kcal_per_day": "Energibehov pr. person og dag",
+          "water_per_day": "Drikkevand pr. person og dag"
+        },
+        "data_description": {
+          "warning_days": "Hvor mange dage før udløb en vare regnes som snart udløbet.",
+          "notify_time": "Udløbsdatoer kontrolleres dagligt på dette tidspunkt.",
+          "persistent_notification": "Viser udløbne og snart udløbne varer som en vedvarende notifikation.",
+          "notify_service": "f.eks. notify.mobile_app_min_telefon – lad feltet være tomt for ingen push.",
+          "household_persons": "Grundlag for lagerets rækkevidde.",
+          "kcal_per_day": "Tyske BBK's beregningsgrundlag: 2200 kcal.",
+          "water_per_day": "Tyske BBK's anbefaling: 2 liter (heraf 0,5 l til madlavning)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Varer på lager",
+        "unit_of_measurement": "varer"
+      },
+      "expiring": {
+        "name": "Udløber snart",
+        "unit_of_measurement": "varer"
+      },
+      "expired": {
+        "name": "Udløbet",
+        "unit_of_measurement": "varer"
+      },
+      "missing": {
+        "name": "Manglende varer",
+        "unit_of_measurement": "varer"
+      },
+      "next_expiry": {
+        "name": "Næste udløbsdato"
+      },
+      "supply_days": {
+        "name": "Rækkevidde"
+      },
+      "food_supply_days": {
+        "name": "Rækkevidde mad"
+      },
+      "water_supply_days": {
+        "name": "Rækkevidde vand"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Indkøbsliste"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Tilføj vare",
+      "description": "Tilføjer en vare til en lagerliste.",
+      "fields": {
+        "name": {
+          "name": "Navn",
+          "description": "Varens navn."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Listens navn eller ID. Standard: den første liste."
+        },
+        "category": {
+          "name": "Kategori",
+          "description": "Kategori-ID, f.eks. lebensmittel eller hausapotheke."
+        },
+        "quantity": {
+          "name": "Mængde",
+          "description": "Mængde på lager."
+        },
+        "target_quantity": {
+          "name": "Målmængde",
+          "description": "Ønsket lagerniveau."
+        },
+        "unit": {
+          "name": "Enhed",
+          "description": "f.eks. stk., kg, l."
+        },
+        "purchase_date": {
+          "name": "Købsdato",
+          "description": "Hvornår varen blev købt."
+        },
+        "expiry_date": {
+          "name": "Udløbsdato",
+          "description": "Bedst før- eller sidste anvendelsesdato."
+        },
+        "location": {
+          "name": "Opbevaringssted",
+          "description": "Hvor varen opbevares."
+        },
+        "notes": {
+          "name": "Noter",
+          "description": "Fritekst."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Forbrug vare",
+      "description": "Reducerer en vares beholdning. Ved angivelse af navn bruges det parti, der udløber først.",
+      "fields": {
+        "item_id": {
+          "name": "Vare-ID",
+          "description": "Varens ID."
+        },
+        "name": {
+          "name": "Navn",
+          "description": "Alternativ til ID: varens navn."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Begræns eventuelt til én liste."
+        },
+        "amount": {
+          "name": "Mængde",
+          "description": "Forbrugt mængde."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Anvend skabelon",
+      "description": "Beregner en skabelon for personer og dage og tilføjer den som indkøbsliste.",
+      "fields": {
+        "template": {
+          "name": "Skabelon",
+          "description": "Skabelonens ID."
+        },
+        "persons": {
+          "name": "Personer",
+          "description": "Antal personer."
+        },
+        "days": {
+          "name": "Dage",
+          "description": "Antal dage."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Eksisterende liste (navn/ID) eller navn på en ny liste."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Kontroller udløbsdatoer",
+      "description": "Kontrollerer alle udløbsdatoer med det samme og sender advarsler efter behov."
+    },
+    "reload_templates": {
+      "name": "Genindlæs skabeloner",
+      "description": "Genindlæser alle skabelonfiler."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Fødevarer",
+        "getraenke": "Drikkevarer",
+        "hausapotheke": "Husapotek",
+        "drogerie": "Hygiejne & pleje",
+        "haushalt": "Husholdning & energi",
+        "dokumente": "Dokumenter & kontanter",
+        "tiere": "Kæledyr",
+        "sonstiges": "Andet"
+      }
+    }
+  }
+}

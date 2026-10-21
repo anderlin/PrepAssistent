@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Διαχειριστείτε αποθέματα, φαρμακείο σπιτιού και άλλα. Μετά τη ρύθμιση το PrepAssistent εμφανίζεται στην πλαϊνή μπάρα.",
+        "data": {
+          "warning_days": "Προειδοποίηση πριν τη λήξη",
+          "notify_time": "Ώρα καθημερινού ελέγχου",
+          "persistent_notification": "Ειδοποίηση Home Assistant",
+          "notify_service": "Υπηρεσία ειδοποιήσεων push (προαιρετικό)",
+          "household_persons": "Άτομα στο νοικοκυριό",
+          "kcal_per_day": "Ενεργειακή ανάγκη ανά άτομο και ημέρα",
+          "water_per_day": "Πόσιμο νερό ανά άτομο και ημέρα"
+        },
+        "data_description": {
+          "warning_days": "Πόσες ημέρες πριν τη λήξη ένα είδος θεωρείται ότι λήγει σύντομα.",
+          "notify_time": "Οι ημερομηνίες λήξης ελέγχονται καθημερινά αυτή την ώρα.",
+          "persistent_notification": "Εμφανίζει τα ληγμένα και τα είδη που λήγουν σύντομα ως μόνιμη ειδοποίηση.",
+          "notify_service": "π.χ. notify.mobile_app_to_kinito_mou – αφήστε κενό για καμία ειδοποίηση push.",
+          "household_persons": "Βάση για τον υπολογισμό της επάρκειας του αποθέματος.",
+          "kcal_per_day": "Βάση υπολογισμού του γερμανικού BBK: 2200 kcal.",
+          "water_per_day": "Σύσταση του γερμανικού BBK: 2 λίτρα (από αυτά 0,5 l για μαγείρεμα)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Το PrepAssistent έχει ήδη ρυθμιστεί."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Επιλογές PrepAssistent",
+        "data": {
+          "warning_days": "Προειδοποίηση πριν τη λήξη",
+          "notify_time": "Ώρα καθημερινού ελέγχου",
+          "persistent_notification": "Ειδοποίηση Home Assistant",
+          "notify_service": "Υπηρεσία ειδοποιήσεων push (προαιρετικό)",
+          "household_persons": "Άτομα στο νοικοκυριό",
+          "kcal_per_day": "Ενεργειακή ανάγκη ανά άτομο και ημέρα",
+          "water_per_day": "Πόσιμο νερό ανά άτομο και ημέρα"
+        },
+        "data_description": {
+          "warning_days": "Πόσες ημέρες πριν τη λήξη ένα είδος θεωρείται ότι λήγει σύντομα.",
+          "notify_time": "Οι ημερομηνίες λήξης ελέγχονται καθημερινά αυτή την ώρα.",
+          "persistent_notification": "Εμφανίζει τα ληγμένα και τα είδη που λήγουν σύντομα ως μόνιμη ειδοποίηση.",
+          "notify_service": "π.χ. notify.mobile_app_to_kinito_mou – αφήστε κενό για καμία ειδοποίηση push.",
+          "household_persons": "Βάση για τον υπολογισμό της επάρκειας του αποθέματος.",
+          "kcal_per_day": "Βάση υπολογισμού του γερμανικού BBK: 2200 kcal.",
+          "water_per_day": "Σύσταση του γερμανικού BBK: 2 λίτρα (από αυτά 0,5 l για μαγείρεμα)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Είδη σε απόθεμα",
+        "unit_of_measurement": "είδη"
+      },
+      "expiring": {
+        "name": "Λήγουν σύντομα",
+        "unit_of_measurement": "είδη"
+      },
+      "expired": {
+        "name": "Ληγμένα",
+        "unit_of_measurement": "είδη"
+      },
+      "missing": {
+        "name": "Είδη που λείπουν",
+        "unit_of_measurement": "είδη"
+      },
+      "next_expiry": {
+        "name": "Επόμενη ημερομηνία λήξης"
+      },
+      "supply_days": {
+        "name": "Επάρκεια"
+      },
+      "food_supply_days": {
+        "name": "Επάρκεια τροφής"
+      },
+      "water_supply_days": {
+        "name": "Επάρκεια νερού"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Λίστα αγορών"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Προσθήκη είδους",
+      "description": "Προσθέτει ένα είδος σε λίστα αποθεμάτων.",
+      "fields": {
+        "name": {
+          "name": "Όνομα",
+          "description": "Όνομα του είδους."
+        },
+        "list": {
+          "name": "Λίστα",
+          "description": "Όνομα ή ID λίστας. Προεπιλογή: η πρώτη λίστα."
+        },
+        "category": {
+          "name": "Κατηγορία",
+          "description": "ID κατηγορίας, π.χ. lebensmittel ή hausapotheke."
+        },
+        "quantity": {
+          "name": "Ποσότητα",
+          "description": "Ποσότητα σε απόθεμα."
+        },
+        "target_quantity": {
+          "name": "Ποσότητα-στόχος",
+          "description": "Επιθυμητό επίπεδο αποθέματος."
+        },
+        "unit": {
+          "name": "Μονάδα",
+          "description": "π.χ. τεμ., kg, l."
+        },
+        "purchase_date": {
+          "name": "Ημερομηνία αγοράς",
+          "description": "Πότε αγοράστηκε το είδος."
+        },
+        "expiry_date": {
+          "name": "Ημερομηνία λήξης",
+          "description": "Ημερομηνία ανάλωσης ή λήξης."
+        },
+        "location": {
+          "name": "Θέση αποθήκευσης",
+          "description": "Πού φυλάσσεται το είδος."
+        },
+        "notes": {
+          "name": "Σημειώσεις",
+          "description": "Ελεύθερο κείμενο."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Κατανάλωση είδους",
+      "description": "Μειώνει το απόθεμα ενός είδους. Με όνομα χρησιμοποιείται η παρτίδα που λήγει πρώτη.",
+      "fields": {
+        "item_id": {
+          "name": "ID είδους",
+          "description": "Το ID του είδους."
+        },
+        "name": {
+          "name": "Όνομα",
+          "description": "Εναλλακτικά του ID: όνομα του είδους."
+        },
+        "list": {
+          "name": "Λίστα",
+          "description": "Προαιρετικός περιορισμός σε μία λίστα."
+        },
+        "amount": {
+          "name": "Ποσότητα",
+          "description": "Ποσότητα που καταναλώθηκε."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Εφαρμογή προτύπου",
+      "description": "Υπολογίζει ένα πρότυπο για άτομα και ημέρες και το προσθέτει ως λίστα αγορών.",
+      "fields": {
+        "template": {
+          "name": "Πρότυπο",
+          "description": "ID προτύπου."
+        },
+        "persons": {
+          "name": "Άτομα",
+          "description": "Αριθμός ατόμων."
+        },
+        "days": {
+          "name": "Ημέρες",
+          "description": "Αριθμός ημερών."
+        },
+        "list": {
+          "name": "Λίστα",
+          "description": "Υπάρχουσα λίστα (όνομα/ID) ή όνομα νέας λίστας."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Έλεγχος ημερομηνιών λήξης",
+      "description": "Ελέγχει αμέσως όλες τις ημερομηνίες λήξης και στέλνει προειδοποιήσεις αν χρειάζεται."
+    },
+    "reload_templates": {
+      "name": "Επαναφόρτωση προτύπων",
+      "description": "Επαναφορτώνει όλα τα αρχεία προτύπων."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Τρόφιμα",
+        "getraenke": "Ποτά",
+        "hausapotheke": "Φαρμακείο σπιτιού",
+        "drogerie": "Υγιεινή & περιποίηση",
+        "haushalt": "Νοικοκυριό & ενέργεια",
+        "dokumente": "Έγγραφα & μετρητά",
+        "tiere": "Κατοικίδια",
+        "sonstiges": "Λοιπά"
+      }
+    }
+  }
+}

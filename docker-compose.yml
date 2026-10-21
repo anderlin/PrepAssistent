@@ -1,0 +1,13 @@
+# Lokale Testumgebung: docker compose up -d  →  http://localhost:8123
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: prep-assistent-dev
+    ports:
+      - "8123:8123"
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - ./.dev/config:/config
+      - ./custom_components/prep_assistent:/config/custom_components/prep_assistent:ro
+    restart: unless-stopped

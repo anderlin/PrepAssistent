@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Hantera förråd, husapotek och mer. Efter installationen visas PrepAssistent i sidofältet.",
+        "data": {
+          "warning_days": "Varningsframförhållning",
+          "notify_time": "Tid för daglig kontroll",
+          "persistent_notification": "Home Assistant-avisering",
+          "notify_service": "Tjänst för push-aviseringar (valfritt)",
+          "household_persons": "Personer i hushållet",
+          "kcal_per_day": "Energibehov per person och dag",
+          "water_per_day": "Dricksvatten per person och dag"
+        },
+        "data_description": {
+          "warning_days": "Hur många dagar före utgång en artikel räknas som snart utgången.",
+          "notify_time": "Utgångsdatum kontrolleras dagligen vid denna tid.",
+          "persistent_notification": "Visar utgångna och snart utgångna artiklar som en beständig avisering.",
+          "notify_service": "t.ex. notify.mobile_app_min_telefon – lämna tomt för ingen push.",
+          "household_persons": "Underlag för förrådets räckvidd.",
+          "kcal_per_day": "Tyska BBK:s beräkningsgrund: 2200 kcal.",
+          "water_per_day": "Tyska BBK:s rekommendation: 2 liter (varav 0,5 l till matlagning)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent är redan konfigurerat."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Inställningar för PrepAssistent",
+        "data": {
+          "warning_days": "Varningsframförhållning",
+          "notify_time": "Tid för daglig kontroll",
+          "persistent_notification": "Home Assistant-avisering",
+          "notify_service": "Tjänst för push-aviseringar (valfritt)",
+          "household_persons": "Personer i hushållet",
+          "kcal_per_day": "Energibehov per person och dag",
+          "water_per_day": "Dricksvatten per person och dag"
+        },
+        "data_description": {
+          "warning_days": "Hur många dagar före utgång en artikel räknas som snart utgången.",
+          "notify_time": "Utgångsdatum kontrolleras dagligen vid denna tid.",
+          "persistent_notification": "Visar utgångna och snart utgångna artiklar som en beständig avisering.",
+          "notify_service": "t.ex. notify.mobile_app_min_telefon – lämna tomt för ingen push.",
+          "household_persons": "Underlag för förrådets räckvidd.",
+          "kcal_per_day": "Tyska BBK:s beräkningsgrund: 2200 kcal.",
+          "water_per_day": "Tyska BBK:s rekommendation: 2 liter (varav 0,5 l till matlagning)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Artiklar i lager",
+        "unit_of_measurement": "artiklar"
+      },
+      "expiring": {
+        "name": "Går snart ut",
+        "unit_of_measurement": "artiklar"
+      },
+      "expired": {
+        "name": "Utgångna",
+        "unit_of_measurement": "artiklar"
+      },
+      "missing": {
+        "name": "Saknade artiklar",
+        "unit_of_measurement": "artiklar"
+      },
+      "next_expiry": {
+        "name": "Nästa utgångsdatum"
+      },
+      "supply_days": {
+        "name": "Räckvidd"
+      },
+      "food_supply_days": {
+        "name": "Räckvidd mat"
+      },
+      "water_supply_days": {
+        "name": "Räckvidd vatten"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Inköpslista"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Lägg till artikel",
+      "description": "Lägger till en artikel i en förrådslista.",
+      "fields": {
+        "name": {
+          "name": "Namn",
+          "description": "Artikelns namn."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Listans namn eller ID. Standard: den första listan."
+        },
+        "category": {
+          "name": "Kategori",
+          "description": "Kategori-ID, t.ex. lebensmittel eller hausapotheke."
+        },
+        "quantity": {
+          "name": "Mängd",
+          "description": "Mängd i lager."
+        },
+        "target_quantity": {
+          "name": "Målmängd",
+          "description": "Önskad lagernivå."
+        },
+        "unit": {
+          "name": "Enhet",
+          "description": "t.ex. st, kg, l."
+        },
+        "purchase_date": {
+          "name": "Inköpsdatum",
+          "description": "När artikeln köptes."
+        },
+        "expiry_date": {
+          "name": "Utgångsdatum",
+          "description": "Bäst före- eller sista förbrukningsdag."
+        },
+        "location": {
+          "name": "Förvaringsplats",
+          "description": "Var artikeln förvaras."
+        },
+        "notes": {
+          "name": "Anteckningar",
+          "description": "Fritext."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Förbruka artikel",
+      "description": "Minskar en artikels lager. Anges namnet används det parti som går ut först.",
+      "fields": {
+        "item_id": {
+          "name": "Artikel-ID",
+          "description": "Artikelns ID."
+        },
+        "name": {
+          "name": "Namn",
+          "description": "Alternativ till ID: artikelns namn."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Begränsa eventuellt till en lista."
+        },
+        "amount": {
+          "name": "Mängd",
+          "description": "Förbrukad mängd."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Använd mall",
+      "description": "Beräknar en mall för personer och dagar och lägger till den som inköpslista.",
+      "fields": {
+        "template": {
+          "name": "Mall",
+          "description": "Mallens ID."
+        },
+        "persons": {
+          "name": "Personer",
+          "description": "Antal personer."
+        },
+        "days": {
+          "name": "Dagar",
+          "description": "Antal dagar."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Befintlig lista (namn/ID) eller namn på en ny lista."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Kontrollera utgångsdatum",
+      "description": "Kontrollerar alla utgångsdatum direkt och skickar varningar vid behov."
+    },
+    "reload_templates": {
+      "name": "Ladda om mallar",
+      "description": "Laddar om alla mallfiler."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Livsmedel",
+        "getraenke": "Drycker",
+        "hausapotheke": "Husapotek",
+        "drogerie": "Hygien och vård",
+        "haushalt": "Hushåll och energi",
+        "dokumente": "Dokument och kontanter",
+        "tiere": "Husdjur",
+        "sonstiges": "Övrigt"
+      }
+    }
+  }
+}

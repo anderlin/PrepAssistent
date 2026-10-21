@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Gestiona despensas, botiquín y más. Tras la configuración, PrepAssistent aparece en la barra lateral.",
+        "data": {
+          "warning_days": "Antelación del aviso",
+          "notify_time": "Hora de la comprobación diaria",
+          "persistent_notification": "Notificación de Home Assistant",
+          "notify_service": "Servicio de notificación push (opcional)",
+          "household_persons": "Personas en el hogar",
+          "kcal_per_day": "Necesidad energética por persona y día",
+          "water_per_day": "Agua potable por persona y día"
+        },
+        "data_description": {
+          "warning_days": "Cuántos días antes de caducar se considera que un artículo caduca pronto.",
+          "notify_time": "Las fechas de caducidad se comprueban cada día a esta hora.",
+          "persistent_notification": "Muestra los artículos caducados o a punto de caducar como notificación persistente.",
+          "notify_service": "p. ej. notify.mobile_app_mi_movil – déjalo vacío para no enviar push.",
+          "household_persons": "Base para calcular la autonomía de la reserva.",
+          "kcal_per_day": "Base de cálculo del BBK alemán: 2200 kcal.",
+          "water_per_day": "Recomendación del BBK alemán: 2 litros (0,5 l de ellos para cocinar)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent ya está configurado."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones de PrepAssistent",
+        "data": {
+          "warning_days": "Antelación del aviso",
+          "notify_time": "Hora de la comprobación diaria",
+          "persistent_notification": "Notificación de Home Assistant",
+          "notify_service": "Servicio de notificación push (opcional)",
+          "household_persons": "Personas en el hogar",
+          "kcal_per_day": "Necesidad energética por persona y día",
+          "water_per_day": "Agua potable por persona y día"
+        },
+        "data_description": {
+          "warning_days": "Cuántos días antes de caducar se considera que un artículo caduca pronto.",
+          "notify_time": "Las fechas de caducidad se comprueban cada día a esta hora.",
+          "persistent_notification": "Muestra los artículos caducados o a punto de caducar como notificación persistente.",
+          "notify_service": "p. ej. notify.mobile_app_mi_movil – déjalo vacío para no enviar push.",
+          "household_persons": "Base para calcular la autonomía de la reserva.",
+          "kcal_per_day": "Base de cálculo del BBK alemán: 2200 kcal.",
+          "water_per_day": "Recomendación del BBK alemán: 2 litros (0,5 l de ellos para cocinar)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Artículos en stock",
+        "unit_of_measurement": "artículos"
+      },
+      "expiring": {
+        "name": "Caducan pronto",
+        "unit_of_measurement": "artículos"
+      },
+      "expired": {
+        "name": "Caducados",
+        "unit_of_measurement": "artículos"
+      },
+      "missing": {
+        "name": "Artículos que faltan",
+        "unit_of_measurement": "artículos"
+      },
+      "next_expiry": {
+        "name": "Próxima fecha de caducidad"
+      },
+      "supply_days": {
+        "name": "Autonomía"
+      },
+      "food_supply_days": {
+        "name": "Autonomía de comida"
+      },
+      "water_supply_days": {
+        "name": "Autonomía de agua"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Lista de la compra"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Añadir artículo",
+      "description": "Añade un artículo a una lista de existencias.",
+      "fields": {
+        "name": {
+          "name": "Nombre",
+          "description": "Nombre del artículo."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Nombre o ID de la lista. Por defecto: la primera lista."
+        },
+        "category": {
+          "name": "Categoría",
+          "description": "ID de categoría, p. ej. lebensmittel o hausapotheke."
+        },
+        "quantity": {
+          "name": "Cantidad",
+          "description": "Cantidad en existencias."
+        },
+        "target_quantity": {
+          "name": "Cantidad objetivo",
+          "description": "Nivel de existencias deseado."
+        },
+        "unit": {
+          "name": "Unidad",
+          "description": "p. ej. uds., kg, l."
+        },
+        "purchase_date": {
+          "name": "Fecha de compra",
+          "description": "Cuándo se compró el artículo."
+        },
+        "expiry_date": {
+          "name": "Fecha de caducidad",
+          "description": "Fecha de consumo preferente o de caducidad."
+        },
+        "location": {
+          "name": "Ubicación",
+          "description": "Dónde se guarda el artículo."
+        },
+        "notes": {
+          "name": "Notas",
+          "description": "Texto libre."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Consumir artículo",
+      "description": "Reduce las existencias de un artículo. Si se indica el nombre, se usa el lote que caduca primero.",
+      "fields": {
+        "item_id": {
+          "name": "ID del artículo",
+          "description": "ID del artículo."
+        },
+        "name": {
+          "name": "Nombre",
+          "description": "Alternativa al ID: nombre del artículo."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Limitar opcionalmente a una lista."
+        },
+        "amount": {
+          "name": "Cantidad",
+          "description": "Cantidad consumida."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Aplicar plantilla",
+      "description": "Calcula una plantilla para personas y días y la añade como lista de la compra.",
+      "fields": {
+        "template": {
+          "name": "Plantilla",
+          "description": "ID de la plantilla."
+        },
+        "persons": {
+          "name": "Personas",
+          "description": "Número de personas."
+        },
+        "days": {
+          "name": "Días",
+          "description": "Número de días."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Lista existente (nombre/ID) o nombre de una lista nueva."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Comprobar fechas de caducidad",
+      "description": "Comprueba ahora todas las fechas de caducidad y envía avisos si es necesario."
+    },
+    "reload_templates": {
+      "name": "Recargar plantillas",
+      "description": "Vuelve a cargar todos los archivos de plantillas."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Alimentos",
+        "getraenke": "Bebidas",
+        "hausapotheke": "Botiquín",
+        "drogerie": "Higiene y cuidado",
+        "haushalt": "Hogar y energía",
+        "dokumente": "Documentos y efectivo",
+        "tiere": "Mascotas",
+        "sonstiges": "Otros"
+      }
+    }
+  }
+}

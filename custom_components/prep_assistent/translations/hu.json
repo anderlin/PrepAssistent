@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Kamrák, házipatika és egyebek kezelése. A beállítás után a PrepAssistent megjelenik az oldalsávon.",
+        "data": {
+          "warning_days": "Figyelmeztetési idő",
+          "notify_time": "Napi ellenőrzés időpontja",
+          "persistent_notification": "Home Assistant értesítés",
+          "notify_service": "Push-értesítési szolgáltatás (nem kötelező)",
+          "household_persons": "Háztartásban élők száma",
+          "kcal_per_day": "Energiaszükséglet személyenként és naponta",
+          "water_per_day": "Ivóvíz személyenként és naponta"
+        },
+        "data_description": {
+          "warning_days": "Hány nappal a lejárat előtt számít egy tétel hamarosan lejárónak.",
+          "notify_time": "A lejárati dátumok ellenőrzése naponta ebben az időpontban történik.",
+          "persistent_notification": "A lejárt és hamarosan lejáró tételek megjelenítése tartós értesítésként.",
+          "notify_service": "pl. notify.mobile_app_telefonom – hagyd üresen, ha nem kérsz push-értesítést.",
+          "household_persons": "A készlet kitartásának számítási alapja.",
+          "kcal_per_day": "A német BBK számítási alapja: 2200 kcal.",
+          "water_per_day": "A német BBK ajánlása: 2 liter (ebből 0,5 l főzésre)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "A PrepAssistent már be van állítva."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "PrepAssistent beállításai",
+        "data": {
+          "warning_days": "Figyelmeztetési idő",
+          "notify_time": "Napi ellenőrzés időpontja",
+          "persistent_notification": "Home Assistant értesítés",
+          "notify_service": "Push-értesítési szolgáltatás (nem kötelező)",
+          "household_persons": "Háztartásban élők száma",
+          "kcal_per_day": "Energiaszükséglet személyenként és naponta",
+          "water_per_day": "Ivóvíz személyenként és naponta"
+        },
+        "data_description": {
+          "warning_days": "Hány nappal a lejárat előtt számít egy tétel hamarosan lejárónak.",
+          "notify_time": "A lejárati dátumok ellenőrzése naponta ebben az időpontban történik.",
+          "persistent_notification": "A lejárt és hamarosan lejáró tételek megjelenítése tartós értesítésként.",
+          "notify_service": "pl. notify.mobile_app_telefonom – hagyd üresen, ha nem kérsz push-értesítést.",
+          "household_persons": "A készlet kitartásának számítási alapja.",
+          "kcal_per_day": "A német BBK számítási alapja: 2200 kcal.",
+          "water_per_day": "A német BBK ajánlása: 2 liter (ebből 0,5 l főzésre)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Készleten lévő tételek",
+        "unit_of_measurement": "tétel"
+      },
+      "expiring": {
+        "name": "Hamarosan lejár",
+        "unit_of_measurement": "tétel"
+      },
+      "expired": {
+        "name": "Lejárt",
+        "unit_of_measurement": "tétel"
+      },
+      "missing": {
+        "name": "Hiányzó tételek",
+        "unit_of_measurement": "tétel"
+      },
+      "next_expiry": {
+        "name": "Következő lejárati dátum"
+      },
+      "supply_days": {
+        "name": "Kitartás"
+      },
+      "food_supply_days": {
+        "name": "Élelem kitartása"
+      },
+      "water_supply_days": {
+        "name": "Víz kitartása"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Bevásárlólista"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Tétel hozzáadása",
+      "description": "Tételt ad egy készletlistához.",
+      "fields": {
+        "name": {
+          "name": "Név",
+          "description": "A tétel neve."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "A lista neve vagy azonosítója. Alapértelmezés: az első lista."
+        },
+        "category": {
+          "name": "Kategória",
+          "description": "Kategória azonosító, pl. lebensmittel vagy hausapotheke."
+        },
+        "quantity": {
+          "name": "Mennyiség",
+          "description": "Készleten lévő mennyiség."
+        },
+        "target_quantity": {
+          "name": "Célmennyiség",
+          "description": "Kívánt készletszint."
+        },
+        "unit": {
+          "name": "Egység",
+          "description": "pl. db, kg, l."
+        },
+        "purchase_date": {
+          "name": "Vásárlás dátuma",
+          "description": "Mikor vásárolták a tételt."
+        },
+        "expiry_date": {
+          "name": "Lejárati dátum",
+          "description": "Minőségmegőrzési vagy fogyaszthatósági idő."
+        },
+        "location": {
+          "name": "Tárolási hely",
+          "description": "Hol tárolják a tételt."
+        },
+        "notes": {
+          "name": "Megjegyzések",
+          "description": "Szabad szöveg."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Tétel felhasználása",
+      "description": "Csökkenti egy tétel készletét. Név megadásakor a legkorábban lejáró tétel csökken.",
+      "fields": {
+        "item_id": {
+          "name": "Tétel azonosító",
+          "description": "A tétel azonosítója."
+        },
+        "name": {
+          "name": "Név",
+          "description": "Az azonosító helyett: a tétel neve."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Opcionálisan egy listára szűkítve."
+        },
+        "amount": {
+          "name": "Mennyiség",
+          "description": "Felhasznált mennyiség."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Sablon alkalmazása",
+      "description": "Kiszámít egy sablont adott személyszámra és napra, és bevásárlólistaként hozzáadja.",
+      "fields": {
+        "template": {
+          "name": "Sablon",
+          "description": "A sablon azonosítója."
+        },
+        "persons": {
+          "name": "Személyek",
+          "description": "Személyek száma."
+        },
+        "days": {
+          "name": "Napok",
+          "description": "Napok száma."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Meglévő lista (név/azonosító) vagy új lista neve."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Lejárati dátumok ellenőrzése",
+      "description": "Azonnal ellenőrzi az összes lejárati dátumot, és szükség esetén figyelmeztet."
+    },
+    "reload_templates": {
+      "name": "Sablonok újratöltése",
+      "description": "Újratölti az összes sablonfájlt."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Élelmiszer",
+        "getraenke": "Italok",
+        "hausapotheke": "Házipatika",
+        "drogerie": "Higiénia és ápolás",
+        "haushalt": "Háztartás és energia",
+        "dokumente": "Iratok és készpénz",
+        "tiere": "Háziállatok",
+        "sonstiges": "Egyéb"
+      }
+    }
+  }
+}

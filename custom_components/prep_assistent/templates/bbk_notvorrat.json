@@ -1,0 +1,129 @@
+{
+  "id": "bbk_notvorrat",
+  "name": {
+    "de": "Notvorrat (Beispiel nach BBK-Empfehlung)",
+    "en": "Emergency supply (example based on German BBK recommendation)",
+    "fr": "Réserve d'urgence (exemple selon la recommandation du BBK allemand)",
+    "es": "Reserva de emergencia (ejemplo según la recomendación del BBK alemán)",
+    "it": "Scorta di emergenza (esempio secondo la raccomandazione del BBK tedesco)",
+    "ru": "Аварийный запас (пример по рекомендации немецкого BBK)",
+    "da": "Nødforsyning (eksempel efter tyske BBK's anbefaling)",
+    "nb": "Beredskapslager (eksempel etter tyske BBKs anbefaling)",
+    "sv": "Krisförråd (exempel enligt tyska BBK:s rekommendation)",
+    "hu": "Vészhelyzeti készlet (példa a német BBK ajánlása alapján)",
+    "el": "Απόθεμα έκτακτης ανάγκης (παράδειγμα βάσει σύστασης του γερμανικού BBK)"
+  },
+  "description": {
+    "de": "Beispielvorlage angelehnt an die Empfehlung des Bundesamts für Bevölkerungsschutz (Grundvorrat 10 Tage). Mengen werden pro Person und Tag berechnet.",
+    "en": "Example template based on the recommendation of the German Federal Office of Civil Protection (BBK), basic supply for 10 days. Quantities are calculated per person and day.",
+    "fr": "Modèle d'exemple basé sur la recommandation de l'Office fédéral allemand de la protection civile (BBK), réserve de base pour 10 jours. Les quantités sont calculées par personne et par jour.",
+    "es": "Plantilla de ejemplo basada en la recomendación de la Oficina Federal alemana de Protección Civil (BBK), reserva básica para 10 días. Las cantidades se calculan por persona y día.",
+    "it": "Modello di esempio basato sulla raccomandazione dell'Ufficio federale tedesco per la protezione civile (BBK), scorta di base per 10 giorni. Le quantità sono calcolate per persona e giorno.",
+    "ru": "Пример шаблона по рекомендации Федерального ведомства гражданской защиты Германии (BBK), базовый запас на 10 дней. Количество рассчитывается на человека в день.",
+    "da": "Eksempelskabelon baseret på anbefalingen fra det tyske forbundskontor for civilbeskyttelse (BBK), grundforsyning til 10 dage. Mængderne beregnes pr. person og dag.",
+    "nb": "Eksempelmal basert på anbefalingen fra det tyske forbundskontoret for sivilbeskyttelse (BBK), grunnlager for 10 dager. Mengdene beregnes per person og dag.",
+    "sv": "Exempelmall baserad på rekommendationen från tyska förbundsmyndigheten för befolkningsskydd (BBK), grundförråd för 10 dagar. Mängderna beräknas per person och dag.",
+    "hu": "Példasablon a német Szövetségi Polgári Védelmi Hivatal (BBK) ajánlása alapján, 10 napos alapkészlet. A mennyiségek személyenként és naponta számítódnak.",
+    "el": "Παράδειγμα προτύπου βάσει της σύστασης της Ομοσπονδιακής Υπηρεσίας Πολιτικής Προστασίας της Γερμανίας (BBK), βασικό απόθεμα 10 ημερών. Οι ποσότητες υπολογίζονται ανά άτομο και ημέρα."
+  },
+  "default_persons": 2,
+  "default_days": 10,
+  "items": [
+    {
+      "name": { "de": "Trinkwasser / Getränke", "en": "Drinking water / beverages", "fr": "Eau potable / boissons", "es": "Agua potable / bebidas", "it": "Acqua potabile / bevande", "ru": "Питьевая вода / напитки", "da": "Drikkevand / drikkevarer", "nb": "Drikkevann / drikke", "sv": "Dricksvatten / drycker", "hu": "Ivóvíz / italok", "el": "Πόσιμο νερό / ποτά" },
+      "category": "getraenke", "unit": "l", "water_per_unit": 1, "per_person_per_day": 2.0, "step": 1, "shelf_life_days": 365
+    },
+    {
+      "name": { "de": "Getreide, Brot, Nudeln, Reis, Kartoffeln", "en": "Cereals, bread, pasta, rice, potatoes", "fr": "Céréales, pain, pâtes, riz, pommes de terre", "es": "Cereales, pan, pasta, arroz, patatas", "it": "Cereali, pane, pasta, riso, patate", "ru": "Крупы, хлеб, макароны, рис, картофель", "da": "Korn, brød, pasta, ris, kartofler", "nb": "Korn, brød, pasta, ris, poteter", "sv": "Spannmål, bröd, pasta, ris, potatis", "hu": "Gabona, kenyér, tészta, rizs, burgonya", "el": "Δημητριακά, ψωμί, ζυμαρικά, ρύζι, πατάτες" },
+      "category": "lebensmittel", "unit": "kg", "kcal_per_unit": 3500, "per_person_per_day": 0.35, "step": 0.5, "shelf_life_days": 365
+    },
+    {
+      "name": { "de": "Gemüse & Hülsenfrüchte (Konserven)", "en": "Vegetables & pulses (canned)", "fr": "Légumes & légumineuses (conserves)", "es": "Verduras y legumbres (en conserva)", "it": "Verdure e legumi (in scatola)", "ru": "Овощи и бобовые (консервы)", "da": "Grøntsager & bælgfrugter (konserves)", "nb": "Grønnsaker og belgfrukter (hermetikk)", "sv": "Grönsaker & baljväxter (konserver)", "hu": "Zöldség és hüvelyesek (konzerv)", "el": "Λαχανικά & όσπρια (κονσέρβες)" },
+      "category": "lebensmittel", "unit": "kg", "kcal_per_unit": 500, "per_person_per_day": 0.4, "step": 0.5, "shelf_life_days": 730
+    },
+    {
+      "name": { "de": "Obst & Nüsse", "en": "Fruit & nuts", "fr": "Fruits & noix", "es": "Fruta y frutos secos", "it": "Frutta e frutta secca", "ru": "Фрукты и орехи", "da": "Frugt & nødder", "nb": "Frukt og nøtter", "sv": "Frukt & nötter", "hu": "Gyümölcs és olajos magvak", "el": "Φρούτα & ξηροί καρποί" },
+      "category": "lebensmittel", "unit": "kg", "kcal_per_unit": 1000, "per_person_per_day": 0.25, "step": 0.5, "shelf_life_days": 365
+    },
+    {
+      "name": { "de": "Milch & Milchprodukte (H-Milch, Hartkäse)", "en": "Milk & dairy (UHT milk, hard cheese)", "fr": "Lait & produits laitiers (lait UHT, fromage à pâte dure)", "es": "Leche y lácteos (leche UHT, queso curado)", "it": "Latte e latticini (latte UHT, formaggio stagionato)", "ru": "Молоко и молочные продукты (УВТ-молоко, твёрдый сыр)", "da": "Mælk & mejeriprodukter (UHT-mælk, hård ost)", "nb": "Melk og meieriprodukter (UHT-melk, hard ost)", "sv": "Mjölk & mejeriprodukter (UHT-mjölk, hårdost)", "hu": "Tej és tejtermékek (UHT tej, kemény sajt)", "el": "Γάλα & γαλακτοκομικά (γάλα UHT, σκληρό τυρί)" },
+      "category": "lebensmittel", "unit": "kg", "kcal_per_unit": 900, "per_person_per_day": 0.26, "step": 0.5, "shelf_life_days": 120
+    },
+    {
+      "name": { "de": "Fisch, Fleisch, Eier (Konserven)", "en": "Fish, meat, eggs (preserved)", "fr": "Poisson, viande, œufs (conserves)", "es": "Pescado, carne, huevos (en conserva)", "it": "Pesce, carne, uova (conservati)", "ru": "Рыба, мясо, яйца (консервы)", "da": "Fisk, kød, æg (konserves)", "nb": "Fisk, kjøtt, egg (hermetikk)", "sv": "Fisk, kött, ägg (konserver)", "hu": "Hal, hús, tojás (konzerv)", "el": "Ψάρι, κρέας, αυγά (κονσέρβες)" },
+      "category": "lebensmittel", "unit": "kg", "kcal_per_unit": 2000, "per_person_per_day": 0.15, "step": 0.5, "shelf_life_days": 730
+    },
+    {
+      "name": { "de": "Fette & Öle", "en": "Fats & oils", "fr": "Matières grasses & huiles", "es": "Grasas y aceites", "it": "Grassi e oli", "ru": "Жиры и масла", "da": "Fedt & olie", "nb": "Fett og olje", "sv": "Fetter & oljor", "hu": "Zsírok és olajok", "el": "Λίπη & έλαια" },
+      "category": "lebensmittel", "unit": "l", "kcal_per_unit": 8500, "per_person_per_day": 0.036, "step": 0.25, "shelf_life_days": 365
+    },
+    {
+      "name": { "de": "Zucker, Honig, Salz", "en": "Sugar, honey, salt", "fr": "Sucre, miel, sel", "es": "Azúcar, miel, sal", "it": "Zucchero, miele, sale", "ru": "Сахар, мёд, соль", "da": "Sukker, honning, salt", "nb": "Sukker, honning, salt", "sv": "Socker, honung, salt", "hu": "Cukor, méz, só", "el": "Ζάχαρη, μέλι, αλάτι" },
+      "category": "lebensmittel", "unit": "pack", "fixed": 1, "per_person": 0.5,
+      "notes": { "de": "nach Belieben", "en": "as desired", "fr": "selon les envies", "es": "al gusto", "it": "a piacere", "ru": "по желанию", "da": "efter behov", "nb": "etter ønske", "sv": "efter behov", "hu": "igény szerint", "el": "κατά βούληση" }
+    },
+    {
+      "name": { "de": "Toilettenpapier", "en": "Toilet paper", "fr": "Papier toilette", "es": "Papel higiénico", "it": "Carta igienica", "ru": "Туалетная бумага", "da": "Toiletpapir", "nb": "Toalettpapir", "sv": "Toalettpapper", "hu": "Toalettpapír", "el": "Χαρτί υγείας" },
+      "category": "drogerie", "unit": "roll", "per_person_per_day": 0.25
+    },
+    {
+      "name": { "de": "Seife", "en": "Soap", "fr": "Savon", "es": "Jabón", "it": "Sapone", "ru": "Мыло", "da": "Sæbe", "nb": "Såpe", "sv": "Tvål", "hu": "Szappan", "el": "Σαπούνι" },
+      "category": "drogerie", "unit": "pcs", "fixed": 1, "per_person": 0.5
+    },
+    {
+      "name": { "de": "Zahnpasta", "en": "Toothpaste", "fr": "Dentifrice", "es": "Pasta de dientes", "it": "Dentifricio", "ru": "Зубная паста", "da": "Tandpasta", "nb": "Tannkrem", "sv": "Tandkräm", "hu": "Fogkrém", "el": "Οδοντόκρεμα" },
+      "category": "drogerie", "unit": "tube", "per_person": 0.5
+    },
+    {
+      "name": { "de": "Müllbeutel", "en": "Bin bags", "fr": "Sacs poubelle", "es": "Bolsas de basura", "it": "Sacchi della spazzatura", "ru": "Мешки для мусора", "da": "Affaldsposer", "nb": "Søppelposer", "sv": "Soppåsar", "hu": "Szemeteszsák", "el": "Σακούλες απορριμμάτων" },
+      "category": "drogerie", "unit": "roll", "fixed": 1
+    },
+    {
+      "name": { "de": "Erste-Hilfe-Set", "en": "First aid kit", "fr": "Trousse de premiers secours", "es": "Botiquín de primeros auxilios", "it": "Kit di pronto soccorso", "ru": "Аптечка первой помощи", "da": "Førstehjælpskasse", "nb": "Førstehjelpsskrin", "sv": "Första hjälpen-kit", "hu": "Elsősegélycsomag", "el": "Κουτί πρώτων βοηθειών" },
+      "category": "hausapotheke", "unit": "pcs", "fixed": 1, "shelf_life_days": 1825
+    },
+    {
+      "name": { "de": "Schmerzmittel", "en": "Painkillers", "fr": "Antidouleurs", "es": "Analgésicos", "it": "Antidolorifici", "ru": "Обезболивающее", "da": "Smertestillende", "nb": "Smertestillende", "sv": "Smärtstillande", "hu": "Fájdalomcsillapító", "el": "Παυσίπονα" },
+      "category": "hausapotheke", "unit": "pack", "fixed": 1, "shelf_life_days": 1095
+    },
+    {
+      "name": { "de": "Fieberthermometer", "en": "Fever thermometer", "fr": "Thermomètre médical", "es": "Termómetro clínico", "it": "Termometro clinico", "ru": "Медицинский термометр", "da": "Febertermometer", "nb": "Febertermometer", "sv": "Febertermometer", "hu": "Lázmérő", "el": "Θερμόμετρο" },
+      "category": "hausapotheke", "unit": "pcs", "fixed": 1
+    },
+    {
+      "name": { "de": "Taschenlampe", "en": "Flashlight", "fr": "Lampe de poche", "es": "Linterna", "it": "Torcia", "ru": "Фонарик", "da": "Lommelygte", "nb": "Lommelykt", "sv": "Ficklampa", "hu": "Zseblámpa", "el": "Φακός" },
+      "category": "haushalt", "unit": "pcs", "per_person": 1
+    },
+    {
+      "name": { "de": "Batterien (AA)", "en": "Batteries (AA)", "fr": "Piles (AA)", "es": "Pilas (AA)", "it": "Batterie (AA)", "ru": "Батарейки (AA)", "da": "Batterier (AA)", "nb": "Batterier (AA)", "sv": "Batterier (AA)", "hu": "Elemek (AA)", "el": "Μπαταρίες (AA)" },
+      "category": "haushalt", "unit": "pcs", "fixed": 8, "per_person": 4, "step": 4, "shelf_life_days": 3650
+    },
+    {
+      "name": { "de": "Kurbel- oder Batterieradio", "en": "Crank or battery radio", "fr": "Radio à manivelle ou à piles", "es": "Radio de manivela o de pilas", "it": "Radio a manovella o a batterie", "ru": "Радио с динамо-машиной или на батарейках", "da": "Radio med håndsving eller batterier", "nb": "Radio med sveiv eller batterier", "sv": "Vev- eller batteriradio", "hu": "Tekerős vagy elemes rádió", "el": "Ραδιόφωνο με μανιβέλα ή μπαταρίες" },
+      "category": "haushalt", "unit": "pcs", "fixed": 1
+    },
+    {
+      "name": { "de": "Kerzen", "en": "Candles", "fr": "Bougies", "es": "Velas", "it": "Candele", "ru": "Свечи", "da": "Stearinlys", "nb": "Stearinlys", "sv": "Ljus", "hu": "Gyertyák", "el": "Κεριά" },
+      "category": "haushalt", "unit": "pcs", "per_day": 1
+    },
+    {
+      "name": { "de": "Feuerzeug / Streichhölzer", "en": "Lighter / matches", "fr": "Briquet / allumettes", "es": "Mechero / cerillas", "it": "Accendino / fiammiferi", "ru": "Зажигалка / спички", "da": "Lighter / tændstikker", "nb": "Lighter / fyrstikker", "sv": "Tändare / tändstickor", "hu": "Öngyújtó / gyufa", "el": "Αναπτήρας / σπίρτα" },
+      "category": "haushalt", "unit": "pcs", "fixed": 2
+    },
+    {
+      "name": { "de": "Campingkocher + Kartuschen", "en": "Camping stove + cartridges", "fr": "Réchaud de camping + cartouches", "es": "Hornillo de camping + cartuchos", "it": "Fornello da campeggio + cartucce", "ru": "Туристическая плитка + баллоны", "da": "Campingkomfur + patroner", "nb": "Turkoker + gassbokser", "sv": "Campingkök + gaspatroner", "hu": "Kempingfőző + gázpatronok", "el": "Γκαζάκι κάμπινγκ + φιάλες" },
+      "category": "haushalt",
+      "unit": { "de": "Kartuschen", "en": "cartridges", "fr": "cartouches", "es": "cartuchos", "it": "cartucce", "ru": "балл.", "da": "patroner", "nb": "gassbokser", "sv": "patroner", "hu": "patron", "el": "φιάλες" },
+      "per_day": 0.5, "min": 2, "shelf_life_days": 3650
+    },
+    {
+      "name": { "de": "Bargeld", "en": "Cash", "fr": "Espèces", "es": "Dinero en efectivo", "it": "Contanti", "ru": "Наличные", "da": "Kontanter", "nb": "Kontanter", "sv": "Kontanter", "hu": "Készpénz", "el": "Μετρητά" },
+      "category": "dokumente", "unit": "eur", "per_person_per_day": 20, "step": 50,
+      "notes": { "de": "Betrag in Euro – bei anderer Währung entsprechend umrechnen", "en": "Amount in euros – convert to your local currency", "fr": "Montant en euros – à convertir dans votre devise", "es": "Importe en euros – conviértelo a tu moneda local", "it": "Importo in euro – convertire nella valuta locale", "ru": "Сумма в евро – пересчитайте в местную валюту", "da": "Beløb i euro – omregn til din lokale valuta", "nb": "Beløp i euro – regn om til lokal valuta", "sv": "Belopp i euro – räkna om till lokal valuta", "hu": "Összeg euróban – számítsd át helyi pénznemre", "el": "Ποσό σε ευρώ – μετατρέψτε στο τοπικό νόμισμα" }
+    },
+    {
+      "name": { "de": "Kopien wichtiger Dokumente", "en": "Copies of important documents", "fr": "Copies des documents importants", "es": "Copias de documentos importantes", "it": "Copie di documenti importanti", "ru": "Копии важных документов", "da": "Kopier af vigtige dokumenter", "nb": "Kopier av viktige dokumenter", "sv": "Kopior av viktiga dokument", "hu": "Fontos iratok másolatai", "el": "Αντίγραφα σημαντικών εγγράφων" },
+      "category": "dokumente", "unit": "folder", "fixed": 1
+    }
+  ]
+}

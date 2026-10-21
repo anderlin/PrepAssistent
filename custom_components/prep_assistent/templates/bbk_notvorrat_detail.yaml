@@ -1,0 +1,550 @@
+# Detaillierte Variante von bbk_notvorrat.json: Sammelposten sind in Einzelartikel zerlegt,
+# damit jeder Artikel einzeln nachverfolgt werden kann (Bestand, MHD).
+# Die per_person_per_day-Werte je Gruppe ergeben in Summe wieder die BBK-Menge der Gruppe.
+# Packungsgrößen in den Notizen sind Annahmen – bei Bedarf in einer eigenen Vorlage anpassen.
+# Texte sind Sprach-Objekte (de, en, fr, es, it, ru, da, nb, sv, hu, el); unit ist ein Einheiten-Code.
+id: bbk_notvorrat_detail
+name: {de: "Notvorrat detailliert (Beispiel nach BBK-Empfehlung)", en: "Emergency supply, detailed (example based on German BBK recommendation)", fr: "Réserve d'urgence détaillée (exemple selon la recommandation du BBK allemand)", es: "Reserva de emergencia detallada (ejemplo según la recomendación del BBK alemán)", it: "Scorta di emergenza dettagliata (esempio secondo la raccomandazione del BBK tedesco)", ru: "Аварийный запас, подробно (пример по рекомендации немецкого BBK)", da: "Nødforsyning, detaljeret (eksempel efter tyske BBK's anbefaling)", nb: "Beredskapslager, detaljert (eksempel etter tyske BBKs anbefaling)", sv: "Krisförråd, detaljerat (exempel enligt tyska BBK:s rekommendation)", hu: "Vészhelyzeti készlet, részletes (példa a német BBK ajánlása alapján)", el: "Απόθεμα έκτακτης ανάγκης, αναλυτικό (παράδειγμα βάσει σύστασης του γερμανικού BBK)"}
+description:
+  de: Wie „Notvorrat (Beispiel nach BBK-Empfehlung)“, aber jede Lebensmittelgruppe ist in Einzelartikel aufgeteilt. Mengen pro Person und Tag.
+  en: Like “Emergency supply (example …)”, but every food group is split into individual items. Quantities per person and day.
+  fr: Comme « Réserve d'urgence (exemple …) », mais chaque groupe d'aliments est divisé en articles individuels. Quantités par personne et par jour.
+  es: Como «Reserva de emergencia (ejemplo …)», pero cada grupo de alimentos se divide en artículos individuales. Cantidades por persona y día.
+  it: Come «Scorta di emergenza (esempio …)», ma ogni gruppo di alimenti è suddiviso in singoli articoli. Quantità per persona e giorno.
+  ru: Как «Аварийный запас (пример …)», но каждая группа продуктов разбита на отдельные товары. Количество на человека в день.
+  da: Som »Nødforsyning (eksempel …)«, men hver fødevaregruppe er opdelt i enkelte varer. Mængder pr. person og dag.
+  nb: Som «Beredskapslager (eksempel …)», men hver matvaregruppe er delt opp i enkeltvarer. Mengder per person og dag.
+  sv: Som ”Krisförråd (exempel …)”, men varje livsmedelsgrupp är uppdelad i enskilda artiklar. Mängder per person och dag.
+  hu: Mint a „Vészhelyzeti készlet (példa …)”, de minden élelmiszercsoport külön tételekre van bontva. Mennyiségek személyenként és naponta.
+  el: Όπως το «Απόθεμα έκτακτης ανάγκης (παράδειγμα …)», αλλά κάθε ομάδα τροφίμων χωρίζεται σε μεμονωμένα είδη. Ποσότητες ανά άτομο και ημέρα.
+default_persons: 2
+default_days: 10
+items:
+  # --- Getränke (BBK: 2,0 l/P/T) ---
+  - name: {de: "Mineralwasser", en: "Mineral water", fr: "Eau minérale", es: "Agua mineral", it: "Acqua minerale", ru: "Минеральная вода", da: "Mineralvand", nb: "Mineralvann", sv: "Mineralvatten", hu: "Ásványvíz", el: "Εμφιαλωμένο νερό"}
+    category: getraenke
+    unit: l
+    water_per_unit: 1
+    per_person_per_day: 1.6
+    step: 1.5
+    shelf_life_days: 365
+    notes: {de: "PET-Flaschen à 1,5 l", en: "PET bottles of 1.5 l", fr: "bouteilles PET de 1,5 l", es: "botellas PET de 1,5 l", it: "bottiglie PET da 1,5 l", ru: "ПЭТ-бутылки по 1,5 л", da: "PET-flasker à 1,5 l", nb: "PET-flasker à 1,5 l", sv: "PET-flaskor à 1,5 l", hu: "1,5 literes PET-palackok", el: "φιάλες PET 1,5 l"}
+  - name: {de: "Fruchtsaft", en: "Fruit juice", fr: "Jus de fruits", es: "Zumo de fruta", it: "Succo di frutta", ru: "Фруктовый сок", da: "Frugtjuice", nb: "Fruktjuice", sv: "Fruktjuice", hu: "Gyümölcslé", el: "Χυμός φρούτων"}
+    category: getraenke
+    unit: l
+    kcal_per_unit: 450
+    water_per_unit: 1
+    opened_shelf_life_days: 5
+    per_person_per_day: 0.4
+    step: 1
+    shelf_life_days: 365
+  # Zusatz (nicht in der BBK-Literzahl enthalten)
+  - name: {de: "Tee (Beutel)", en: "Tea (bags)", fr: "Thé (sachets)", es: "Té (bolsitas)", it: "Tè (bustine)", ru: "Чай (пакетики)", da: "Te (breve)", nb: "Te (poser)", sv: "Te (påsar)", hu: "Tea (filteres)", el: "Τσάι (φακελάκια)"}
+    category: getraenke
+    unit: pack
+    per_person_per_day: 0.1
+    shelf_life_days: 730
+    notes: {de: "Packung à 20 Beutel", en: "pack of 20 bags", fr: "boîte de 20 sachets", es: "caja de 20 bolsitas", it: "confezione da 20 bustine", ru: "упаковка 20 пакетиков", da: "pakke à 20 breve", nb: "pakke à 20 poser", sv: "paket à 20 påsar", hu: "20 filteres csomag", el: "συσκευασία 20 φακελακίων"}
+  - name: {de: "Kaffee (gemahlen oder löslich)", en: "Coffee (ground or instant)", fr: "Café (moulu ou soluble)", es: "Café (molido o soluble)", it: "Caffè (macinato o solubile)", ru: "Кофе (молотый или растворимый)", da: "Kaffe (formalet eller instant)", nb: "Kaffe (malt eller pulver)", sv: "Kaffe (bryggkaffe eller snabbkaffe)", hu: "Kávé (őrölt vagy instant)", el: "Καφές (αλεσμένος ή στιγμιαίος)"}
+    category: getraenke
+    unit: pack
+    fixed: 1
+    shelf_life_days: 365
+
+  # --- Getreide, Brot, Nudeln, Reis, Kartoffeln (BBK: 0,35 kg/P/T) ---
+  - name: {de: "Nudeln", en: "Pasta", fr: "Pâtes", es: "Pasta", it: "Pasta", ru: "Макароны", da: "Pasta", nb: "Pasta", sv: "Pasta", hu: "Tészta", el: "Ζυμαρικά"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3550
+    per_person_per_day: 0.08
+    step: 0.5
+    shelf_life_days: 730
+  - name: {de: "Reis", en: "Rice", fr: "Riz", es: "Arroz", it: "Riso", ru: "Рис", da: "Ris", nb: "Ris", sv: "Ris", hu: "Rizs", el: "Ρύζι"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3500
+    per_person_per_day: 0.06
+    step: 0.5
+    shelf_life_days: 730
+  - name: {de: "Haferflocken", en: "Rolled oats", fr: "Flocons d'avoine", es: "Copos de avena", it: "Fiocchi d'avena", ru: "Овсяные хлопья", da: "Havregryn", nb: "Havregryn", sv: "Havregryn", hu: "Zabpehely", el: "Νιφάδες βρώμης"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3700
+    per_person_per_day: 0.05
+    step: 0.5
+    shelf_life_days: 365
+  - name: {de: "Knäckebrot", en: "Crispbread", fr: "Pain suédois (knäckebröd)", es: "Pan crujiente (knäckebröd)", it: "Pane croccante (knäckebröd)", ru: "Хлебцы", da: "Knækbrød", nb: "Knekkebrød", sv: "Knäckebröd", hu: "Ropogós lapkenyér", el: "Τραγανό ψωμί (knäckebröd)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3500
+    per_person_per_day: 0.04
+    step: 0.25
+    shelf_life_days: 365
+  - name: {de: "Zwieback", en: "Rusks", fr: "Biscottes", es: "Biscotes", it: "Fette biscottate", ru: "Сухари", da: "Tvebakker", nb: "Kavringer", sv: "Skorpor", hu: "Kétszersült", el: "Φρυγανιές"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3900
+    per_person_per_day: 0.02
+    step: 0.225
+    shelf_life_days: 365
+    notes: {de: "Packung à 225 g", en: "pack of 225 g", fr: "paquet de 225 g", es: "paquete de 225 g", it: "confezione da 225 g", ru: "упаковка 225 г", da: "pakke à 225 g", nb: "pakke à 225 g", sv: "paket à 225 g", hu: "225 g-os csomag", el: "συσκευασία 225 g"}
+  - name: {de: "Vollkornbrot (Dose / eingeschweißt)", en: "Wholemeal bread (canned / vacuum-packed)", fr: "Pain complet (en conserve / sous vide)", es: "Pan integral (en lata / envasado al vacío)", it: "Pane integrale (in scatola / sottovuoto)", ru: "Цельнозерновой хлеб (консервированный / в вакууме)", da: "Fuldkornsbrød (på dåse / vakuumpakket)", nb: "Grovbrød (på boks / vakuumpakket)", sv: "Fullkornsbröd (på burk / vakuumförpackat)", hu: "Teljes kiőrlésű kenyér (konzerv / vákuumcsomagolt)", el: "Ψωμί ολικής άλεσης (κονσέρβα / σε κενό αέρος)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 2200
+    opened_shelf_life_days: 7
+    per_person_per_day: 0.03
+    step: 0.5
+    shelf_life_days: 365
+  - name: {de: "Kartoffelpüree (Pulver)", en: "Mashed potato (powder)", fr: "Purée de pommes de terre (flocons)", es: "Puré de patatas (copos)", it: "Purè di patate (fiocchi)", ru: "Картофельное пюре (сухое)", da: "Kartoffelmos (pulver)", nb: "Potetmos (pulver)", sv: "Potatismos (pulver)", hu: "Burgonyapüré (por)", el: "Πουρές πατάτας (σκόνη)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3500
+    per_person_per_day: 0.02
+    step: 0.25
+    shelf_life_days: 365
+  - name: {de: "Kartoffeln (Konserve)", en: "Potatoes (canned)", fr: "Pommes de terre (conserve)", es: "Patatas (en conserva)", it: "Patate (in scatola)", ru: "Картофель (консервы)", da: "Kartofler (på dåse)", nb: "Poteter (hermetisk)", sv: "Potatis (konserv)", hu: "Burgonya (konzerv)", el: "Πατάτες (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 600
+    per_person_per_day: 0.02
+    step: 0.5
+    shelf_life_days: 730
+  - name: {de: "Mehl", en: "Flour", fr: "Farine", es: "Harina", it: "Farina", ru: "Мука", da: "Mel", nb: "Mel", sv: "Mjöl", hu: "Liszt", el: "Αλεύρι"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3400
+    per_person_per_day: 0.03
+    step: 1
+    shelf_life_days: 365
+
+  # --- Gemüse & Hülsenfrüchte (BBK: 0,40 kg/P/T) ---
+  - name: {de: "Erbsen & Möhren (Konserve)", en: "Peas & carrots (canned)", fr: "Petits pois & carottes (conserve)", es: "Guisantes y zanahorias (en conserva)", it: "Piselli e carote (in scatola)", ru: "Горошек с морковью (консервы)", da: "Ærter & gulerødder (på dåse)", nb: "Erter og gulrøtter (hermetisk)", sv: "Ärtor & morötter (konserv)", hu: "Borsó és répa (konzerv)", el: "Αρακάς & καρότα (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 450
+    per_person_per_day: 0.06
+    step: 0.4
+    shelf_life_days: 730
+    notes: {de: "Dose à 400 g", en: "can of 400 g", fr: "boîte de 400 g", es: "lata de 400 g", it: "lattina da 400 g", ru: "банка 400 г", da: "dåse à 400 g", nb: "boks à 400 g", sv: "burk à 400 g", hu: "400 g-os konzerv", el: "κονσέρβα 400 g"}
+  - name: {de: "Grüne Bohnen (Konserve)", en: "Green beans (canned)", fr: "Haricots verts (conserve)", es: "Judías verdes (en conserva)", it: "Fagiolini (in scatola)", ru: "Стручковая фасоль (консервы)", da: "Grønne bønner (på dåse)", nb: "Grønne bønner (hermetisk)", sv: "Gröna bönor (konserv)", hu: "Zöldbab (konzerv)", el: "Φασολάκια (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 250
+    per_person_per_day: 0.04
+    step: 0.4
+    shelf_life_days: 730
+  - name: {de: "Mais (Konserve)", en: "Sweetcorn (canned)", fr: "Maïs (conserve)", es: "Maíz (en conserva)", it: "Mais (in scatola)", ru: "Кукуруза (консервы)", da: "Majs (på dåse)", nb: "Mais (hermetisk)", sv: "Majs (konserv)", hu: "Csemegekukorica (konzerv)", el: "Καλαμπόκι (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 800
+    per_person_per_day: 0.03
+    step: 0.3
+    shelf_life_days: 730
+  - name: {de: "Tomaten stückig / passiert", en: "Tomatoes, chopped / passata", fr: "Tomates concassées / coulis", es: "Tomate troceado / triturado", it: "Pomodori a pezzi / passata", ru: "Томаты кусочками / протёртые", da: "Hakkede / passerede tomater", nb: "Hakkede / passerte tomater", sv: "Krossade / passerade tomater", hu: "Darabolt / passzírozott paradicsom", el: "Ντομάτα ψιλοκομμένη / πασσάτα"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 250
+    opened_shelf_life_days: 5
+    per_person_per_day: 0.06
+    step: 0.4
+    shelf_life_days: 730
+  - name: {de: "Sauerkraut / Rotkohl (Glas)", en: "Sauerkraut / red cabbage (jar)", fr: "Choucroute / chou rouge (bocal)", es: "Chucrut / lombarda (tarro)", it: "Crauti / cavolo rosso (vasetto)", ru: "Квашеная / красная капуста (банка)", da: "Surkål / rødkål (glas)", nb: "Surkål / rødkål (glass)", sv: "Surkål / rödkål (glasburk)", hu: "Savanyú káposzta / vörös káposzta (üveg)", el: "Ξινολάχανο / κόκκινο λάχανο (βάζο)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 250
+    opened_shelf_life_days: 7
+    per_person_per_day: 0.05
+    step: 0.7
+    shelf_life_days: 730
+  - name: {de: "Pilze (Konserve)", en: "Mushrooms (canned)", fr: "Champignons (conserve)", es: "Champiñones (en conserva)", it: "Funghi (in scatola)", ru: "Грибы (консервы)", da: "Champignon (på dåse)", nb: "Sopp (hermetisk)", sv: "Champinjoner (konserv)", hu: "Gomba (konzerv)", el: "Μανιτάρια (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 200
+    per_person_per_day: 0.02
+    step: 0.3
+    shelf_life_days: 730
+  - name: {de: "Kidneybohnen (Konserve)", en: "Kidney beans (canned)", fr: "Haricots rouges (conserve)", es: "Alubias rojas (en conserva)", it: "Fagioli rossi (in scatola)", ru: "Красная фасоль (консервы)", da: "Kidneybønner (på dåse)", nb: "Kidneybønner (hermetisk)", sv: "Kidneybönor (konserv)", hu: "Vörösbab (konzerv)", el: "Κόκκινα φασόλια (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 900
+    per_person_per_day: 0.04
+    step: 0.4
+    shelf_life_days: 730
+  - name: {de: "Kichererbsen (Konserve)", en: "Chickpeas (canned)", fr: "Pois chiches (conserve)", es: "Garbanzos (en conserva)", it: "Ceci (in scatola)", ru: "Нут (консервы)", da: "Kikærter (på dåse)", nb: "Kikerter (hermetisk)", sv: "Kikärtor (konserv)", hu: "Csicseriborsó (konzerv)", el: "Ρεβίθια (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 1100
+    per_person_per_day: 0.03
+    step: 0.4
+    shelf_life_days: 730
+  - name: {de: "Weiße Bohnen in Tomatensauce (Konserve)", en: "Baked beans in tomato sauce (canned)", fr: "Haricots blancs à la sauce tomate (conserve)", es: "Alubias blancas en salsa de tomate (en conserva)", it: "Fagioli bianchi al pomodoro (in scatola)", ru: "Белая фасоль в томатном соусе (консервы)", da: "Hvide bønner i tomatsauce (på dåse)", nb: "Hvite bønner i tomatsaus (hermetisk)", sv: "Vita bönor i tomatsås (konserv)", hu: "Fehérbab paradicsomszószban (konzerv)", el: "Λευκά φασόλια σε σάλτσα ντομάτας (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 900
+    per_person_per_day: 0.03
+    step: 0.4
+    shelf_life_days: 730
+  - name: {de: "Linsen (getrocknet)", en: "Lentils (dried)", fr: "Lentilles (sèches)", es: "Lentejas (secas)", it: "Lenticchie (secche)", ru: "Чечевица (сухая)", da: "Linser (tørrede)", nb: "Linser (tørkede)", sv: "Linser (torkade)", hu: "Lencse (szárított)", el: "Φακές (ξερές)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3300
+    per_person_per_day: 0.04
+    step: 0.5
+    shelf_life_days: 730
+
+  # --- Obst & Nüsse (BBK: 0,25 kg/P/T) ---
+  - name: {de: "Pfirsiche (Konserve)", en: "Peaches (canned)", fr: "Pêches (conserve)", es: "Melocotones (en conserva)", it: "Pesche (sciroppate)", ru: "Персики (консервы)", da: "Ferskner (på dåse)", nb: "Fersken (hermetisk)", sv: "Persikor (konserv)", hu: "Őszibarack (befőtt)", el: "Ροδάκινα (κομπόστα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 650
+    per_person_per_day: 0.05
+    step: 0.4
+    shelf_life_days: 730
+  - name: {de: "Mandarinen (Konserve)", en: "Mandarins (canned)", fr: "Mandarines (conserve)", es: "Mandarinas (en conserva)", it: "Mandarini (sciroppati)", ru: "Мандарины (консервы)", da: "Mandariner (på dåse)", nb: "Mandariner (hermetisk)", sv: "Mandariner (konserv)", hu: "Mandarin (befőtt)", el: "Μανταρίνια (κομπόστα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 650
+    per_person_per_day: 0.04
+    step: 0.3
+    shelf_life_days: 730
+  - name: {de: "Ananas (Konserve)", en: "Pineapple (canned)", fr: "Ananas (conserve)", es: "Piña (en conserva)", it: "Ananas (sciroppato)", ru: "Ананасы (консервы)", da: "Ananas (på dåse)", nb: "Ananas (hermetisk)", sv: "Ananas (konserv)", hu: "Ananász (befőtt)", el: "Ανανάς (κομπόστα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 700
+    per_person_per_day: 0.03
+    step: 0.5
+    shelf_life_days: 730
+  - name: {de: "Apfelmus (Glas)", en: "Apple sauce (jar)", fr: "Compote de pommes (bocal)", es: "Compota de manzana (tarro)", it: "Purea di mele (vasetto)", ru: "Яблочное пюре (банка)", da: "Æblemos (glas)", nb: "Eplemos (glass)", sv: "Äppelmos (glasburk)", hu: "Almapüré (üveg)", el: "Πουρές μήλου (βάζο)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 750
+    opened_shelf_life_days: 7
+    per_person_per_day: 0.05
+    step: 0.7
+    shelf_life_days: 730
+  - name: {de: "Trockenobst (Aprikosen, Pflaumen)", en: "Dried fruit (apricots, prunes)", fr: "Fruits secs (abricots, pruneaux)", es: "Fruta deshidratada (albaricoques, ciruelas)", it: "Frutta essiccata (albicocche, prugne)", ru: "Сухофрукты (курага, чернослив)", da: "Tørret frugt (abrikoser, svesker)", nb: "Tørket frukt (aprikoser, svisker)", sv: "Torkad frukt (aprikoser, katrinplommon)", hu: "Aszalt gyümölcs (sárgabarack, szilva)", el: "Αποξηραμένα φρούτα (βερίκοκα, δαμάσκηνα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 2500
+    per_person_per_day: 0.02
+    step: 0.2
+    shelf_life_days: 365
+  - name: {de: "Rosinen", en: "Raisins", fr: "Raisins secs", es: "Pasas", it: "Uvetta", ru: "Изюм", da: "Rosiner", nb: "Rosiner", sv: "Russin", hu: "Mazsola", el: "Σταφίδες"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3000
+    per_person_per_day: 0.02
+    step: 0.25
+    shelf_life_days: 365
+  - name: {de: "Nüsse (gemischt)", en: "Nuts (mixed)", fr: "Fruits à coque (mélange)", es: "Frutos secos (variados)", it: "Frutta secca mista", ru: "Орехи (ассорти)", da: "Nødder (blandede)", nb: "Nøtter (blandede)", sv: "Nötter (blandade)", hu: "Diófélék (vegyes)", el: "Ξηροί καρποί (ανάμεικτοι)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 6300
+    per_person_per_day: 0.04
+    step: 0.2
+    shelf_life_days: 270
+
+  # --- Milch & Milchprodukte (BBK: 0,26 kg/P/T) ---
+  - name: {de: "H-Milch", en: "UHT milk", fr: "Lait UHT", es: "Leche UHT", it: "Latte UHT", ru: "Ультрапастеризованное молоко", da: "UHT-mælk", nb: "UHT-melk", sv: "UHT-mjölk", hu: "UHT tej", el: "Γάλα μακράς διαρκείας"}
+    category: lebensmittel
+    unit: l
+    kcal_per_unit: 640
+    opened_shelf_life_days: 3
+    per_person_per_day: 0.2
+    step: 1
+    shelf_life_days: 90
+  - name: {de: "Hartkäse (am Stück)", en: "Hard cheese (whole piece)", fr: "Fromage à pâte dure (en morceau)", es: "Queso curado (en pieza)", it: "Formaggio stagionato (in pezzo)", ru: "Твёрдый сыр (куском)", da: "Hård ost (i stykke)", nb: "Hard ost (i stykke)", sv: "Hårdost (bit)", hu: "Kemény sajt (egyben)", el: "Σκληρό τυρί (κομμάτι)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 4000
+    opened_shelf_life_days: 14
+    per_person_per_day: 0.03
+    step: 0.25
+    shelf_life_days: 90
+  - name: {de: "Kondensmilch", en: "Condensed milk", fr: "Lait concentré", es: "Leche condensada", it: "Latte condensato", ru: "Сгущённое молоко", da: "Kondenseret mælk", nb: "Kondensert melk", sv: "Kondenserad mjölk", hu: "Sűrített tej", el: "Συμπυκνωμένο γάλα"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 1300
+    opened_shelf_life_days: 3
+    per_person_per_day: 0.02
+    step: 0.17
+    shelf_life_days: 365
+    notes: {de: "Tube / Dose à 170 g", en: "tube / can of 170 g", fr: "tube / boîte de 170 g", es: "tubo / lata de 170 g", it: "tubetto / lattina da 170 g", ru: "тюбик / банка 170 г", da: "tube / dåse à 170 g", nb: "tube / boks à 170 g", sv: "tub / burk à 170 g", hu: "170 g-os tubus / doboz", el: "σωληνάριο / κουτί 170 g"}
+  - name: {de: "Milchpulver", en: "Milk powder", fr: "Lait en poudre", es: "Leche en polvo", it: "Latte in polvere", ru: "Сухое молоко", da: "Mælkepulver", nb: "Melkepulver", sv: "Mjölkpulver", hu: "Tejpor", el: "Γάλα σε σκόνη"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 4900
+    per_person_per_day: 0.01
+    step: 0.25
+    shelf_life_days: 365
+
+  # --- Fisch, Fleisch, Eier (BBK: 0,15 kg/P/T) ---
+  - name: {de: "Thunfisch (Konserve)", en: "Tuna (canned)", fr: "Thon (conserve)", es: "Atún (en conserva)", it: "Tonno (in scatola)", ru: "Тунец (консервы)", da: "Tun (på dåse)", nb: "Tunfisk (hermetisk)", sv: "Tonfisk (konserv)", hu: "Tonhal (konzerv)", el: "Τόνος (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 1500
+    per_person_per_day: 0.025
+    step: 0.15
+    shelf_life_days: 1095
+    notes: {de: "Dose à 150 g", en: "can of 150 g", fr: "boîte de 150 g", es: "lata de 150 g", it: "lattina da 150 g", ru: "банка 150 г", da: "dåse à 150 g", nb: "boks à 150 g", sv: "burk à 150 g", hu: "150 g-os konzerv", el: "κονσέρβα 150 g"}
+  - name: {de: "Makrele / Hering (Konserve)", en: "Mackerel / herring (canned)", fr: "Maquereau / hareng (conserve)", es: "Caballa / arenque (en conserva)", it: "Sgombro / aringa (in scatola)", ru: "Скумбрия / сельдь (консервы)", da: "Makrel / sild (på dåse)", nb: "Makrell / sild (hermetisk)", sv: "Makrill / sill (konserv)", hu: "Makréla / hering (konzerv)", el: "Σκουμπρί / ρέγγα (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 2200
+    per_person_per_day: 0.02
+    step: 0.2
+    shelf_life_days: 1095
+  - name: {de: "Fleischkonserve (Rindfleisch, Gulasch)", en: "Canned meat (beef, goulash)", fr: "Viande en conserve (bœuf, goulash)", es: "Carne en conserva (ternera, gulash)", it: "Carne in scatola (manzo, gulasch)", ru: "Мясные консервы (говядина, гуляш)", da: "Kødkonserves (oksekød, gullasch)", nb: "Kjøtthermetikk (storfe, gulasj)", sv: "Köttkonserv (nötkött, gulasch)", hu: "Húskonzerv (marha, gulyás)", el: "Κρέας κονσέρβα (μοσχάρι, γκούλας)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 1700
+    per_person_per_day: 0.03
+    step: 0.4
+    shelf_life_days: 1095
+  - name: {de: "Corned Beef (Konserve)", en: "Corned beef (canned)", fr: "Corned-beef (conserve)", es: "Corned beef (en conserva)", it: "Corned beef (in scatola)", ru: "Солонина (консервы)", da: "Corned beef (på dåse)", nb: "Corned beef (hermetisk)", sv: "Corned beef (konserv)", hu: "Sózott marhahús (konzerv)", el: "Κορν μπιφ (κονσέρβα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 2200
+    per_person_per_day: 0.015
+    step: 0.34
+    shelf_life_days: 1095
+  - name: {de: "Wurstkonserve (Leberwurst, Würstchen)", en: "Canned sausage (liver sausage, frankfurters)", fr: "Charcuterie en conserve (pâté de foie, saucisses)", es: "Embutido en conserva (paté de hígado, salchichas)", it: "Insaccati in scatola (paté di fegato, würstel)", ru: "Колбасные консервы (печёночный паштет, сосиски)", da: "Pølsekonserves (leverpostej, pølser)", nb: "Pølsehermetikk (leverpostei, pølser)", sv: "Korvkonserv (leverpastej, korv)", hu: "Kolbászkonzerv (májkrém, virsli)", el: "Αλλαντικά σε κονσέρβα (πατέ συκωτιού, λουκάνικα)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 2800
+    per_person_per_day: 0.025
+    step: 0.2
+    shelf_life_days: 730
+  - name: {de: "Trockenfleisch (Beef Jerky)", en: "Dried meat (beef jerky)", fr: "Viande séchée (beef jerky)", es: "Carne seca (jerky)", it: "Carne essiccata (beef jerky)", ru: "Вяленое мясо (джерки)", da: "Tørret kød (beef jerky)", nb: "Tørket kjøtt (beef jerky)", sv: "Torkat kött (beef jerky)", hu: "Szárított hús (beef jerky)", el: "Αποξηραμένο κρέας (beef jerky)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 3000
+    per_person_per_day: 0.01
+    step: 0.1
+    shelf_life_days: 365
+  - name: {de: "Salami (luftgetrocknet)", en: "Salami (air-dried)", fr: "Saucisson sec", es: "Salami curado", it: "Salame stagionato", ru: "Сыровяленая салями", da: "Salami (lufttørret)", nb: "Salami (lufttørket)", sv: "Salami (lufttorkad)", hu: "Szalámi (szárított)", el: "Σαλάμι αέρος"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 4000
+    opened_shelf_life_days: 21
+    per_person_per_day: 0.015
+    step: 0.25
+    shelf_life_days: 120
+  - name: {de: "Eierpulver (Vollei)", en: "Egg powder (whole egg)", fr: "Œuf entier en poudre", es: "Huevo entero en polvo", it: "Uovo intero in polvere", ru: "Яичный порошок", da: "Ægpulver (helæg)", nb: "Eggepulver (helegg)", sv: "Äggpulver (helägg)", hu: "Tojáspor (teljes tojás)", el: "Αυγό σε σκόνη (ολόκληρο)"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 5900
+    per_person_per_day: 0.01
+    step: 0.1
+    shelf_life_days: 730
+    notes: {de: "12 g Pulver ≈ 1 Ei", en: "12 g powder ≈ 1 egg", fr: "12 g de poudre ≈ 1 œuf", es: "12 g de polvo ≈ 1 huevo", it: "12 g di polvere ≈ 1 uovo", ru: "12 г порошка ≈ 1 яйцо", da: "12 g pulver ≈ 1 æg", nb: "12 g pulver ≈ 1 egg", sv: "12 g pulver ≈ 1 ägg", hu: "12 g por ≈ 1 tojás", el: "12 g σκόνη ≈ 1 αυγό"}
+
+  # --- Fette & Öle (BBK: 0,036 l/P/T) ---
+  - name: {de: "Rapsöl", en: "Rapeseed oil", fr: "Huile de colza", es: "Aceite de colza", it: "Olio di colza", ru: "Рапсовое масло", da: "Rapsolie", nb: "Rapsolje", sv: "Rapsolja", hu: "Repceolaj", el: "Κραμβέλαιο"}
+    category: lebensmittel
+    unit: l
+    kcal_per_unit: 8200
+    per_person_per_day: 0.02
+    step: 0.5
+    shelf_life_days: 365
+  - name: {de: "Olivenöl", en: "Olive oil", fr: "Huile d'olive", es: "Aceite de oliva", it: "Olio d'oliva", ru: "Оливковое масло", da: "Olivenolie", nb: "Olivenolje", sv: "Olivolja", hu: "Olívaolaj", el: "Ελαιόλαδο"}
+    category: lebensmittel
+    unit: l
+    kcal_per_unit: 8200
+    per_person_per_day: 0.01
+    step: 0.5
+    shelf_life_days: 540
+  - name: {de: "Butterschmalz / Ghee", en: "Clarified butter / ghee", fr: "Beurre clarifié / ghee", es: "Mantequilla clarificada / ghee", it: "Burro chiarificato / ghee", ru: "Топлёное масло / гхи", da: "Klaret smør / ghee", nb: "Klarnet smør / ghee", sv: "Skirat smör / ghee", hu: "Tisztított vaj / ghí", el: "Βούτυρο κλαριφιέ / γκι"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 8900
+    per_person_per_day: 0.006
+    step: 0.25
+    shelf_life_days: 270
+
+  # --- Sonstiges (BBK: nach Belieben) ---
+  - name: {de: "Zucker", en: "Sugar", fr: "Sucre", es: "Azúcar", it: "Zucchero", ru: "Сахар", da: "Sukker", nb: "Sukker", sv: "Socker", hu: "Cukor", el: "Ζάχαρη"}
+    category: lebensmittel
+    unit: kg
+    kcal_per_unit: 4000
+    per_person: 0.5
+    step: 0.5
+    min: 1
+  - name: {de: "Honig", en: "Honey", fr: "Miel", es: "Miel", it: "Miele", ru: "Мёд", da: "Honning", nb: "Honning", sv: "Honung", hu: "Méz", el: "Μέλι"}
+    category: lebensmittel
+    unit: jar
+    kcal_per_unit: 1500
+    fixed: 1
+    notes: {de: "Glas à 500 g", en: "jar of 500 g", fr: "pot de 500 g", es: "tarro de 500 g", it: "vasetto da 500 g", ru: "банка 500 г", da: "glas à 500 g", nb: "glass à 500 g", sv: "burk à 500 g", hu: "500 g-os üveg", el: "βάζο 500 g"}
+  - name: {de: "Marmelade / Konfitüre", en: "Jam", fr: "Confiture", es: "Mermelada", it: "Marmellata / confettura", ru: "Варенье / джем", da: "Marmelade / syltetøj", nb: "Syltetøy", sv: "Sylt / marmelad", hu: "Lekvár / dzsem", el: "Μαρμελάδα"}
+    category: lebensmittel
+    unit: jar
+    kcal_per_unit: 1100
+    opened_shelf_life_days: 30
+    per_person_per_day: 0.05
+    shelf_life_days: 365
+  - name: {de: "Jodsalz", en: "Iodised salt", fr: "Sel iodé", es: "Sal yodada", it: "Sale iodato", ru: "Йодированная соль", da: "Jodsalt", nb: "Jodsalt", sv: "Jodsalt", hu: "Jódozott só", el: "Ιωδιούχο αλάτι"}
+    category: lebensmittel
+    unit: kg
+    fixed: 0.5
+    step: 0.5
+  - name: {de: "Pfeffer & Grundgewürze", en: "Pepper & basic spices", fr: "Poivre & épices de base", es: "Pimienta y especias básicas", it: "Pepe e spezie di base", ru: "Перец и основные специи", da: "Peber & basiskrydderier", nb: "Pepper og basiskrydder", sv: "Peppar & baskryddor", hu: "Bors és alapfűszerek", el: "Πιπέρι & βασικά μπαχαρικά"}
+    category: lebensmittel
+    unit: pack
+    fixed: 1
+  - name: {de: "Gemüsebrühe (Pulver / Würfel)", en: "Vegetable stock (powder / cubes)", fr: "Bouillon de légumes (poudre / cubes)", es: "Caldo de verduras (polvo / pastillas)", it: "Brodo vegetale (granulare / dadi)", ru: "Овощной бульон (порошок / кубики)", da: "Grøntsagsbouillon (pulver / terninger)", nb: "Grønnsaksbuljong (pulver / terninger)", sv: "Grönsaksbuljong (pulver / tärningar)", hu: "Zöldségalaplé (por / kocka)", el: "Ζωμός λαχανικών (σκόνη / κύβοι)"}
+    category: lebensmittel
+    unit: pack
+    fixed: 1
+    per_person: 0.5
+    shelf_life_days: 730
+  - name: {de: "Kakaopulver", en: "Cocoa powder", fr: "Cacao en poudre", es: "Cacao en polvo", it: "Cacao in polvere", ru: "Какао-порошок", da: "Kakaopulver", nb: "Kakaopulver", sv: "Kakaopulver", hu: "Kakaópor", el: "Κακάο σε σκόνη"}
+    category: lebensmittel
+    unit: pack
+    kcal_per_unit: 900
+    fixed: 1
+    shelf_life_days: 365
+  - name: {de: "Schokolade", en: "Chocolate", fr: "Chocolat", es: "Chocolate", it: "Cioccolato", ru: "Шоколад", da: "Chokolade", nb: "Sjokolade", sv: "Choklad", hu: "Csokoládé", el: "Σοκολάτα"}
+    category: lebensmittel
+    unit: bar
+    kcal_per_unit: 540
+    per_person_per_day: 0.2
+    shelf_life_days: 365
+  - name: {de: "Hartkekse", en: "Hard biscuits", fr: "Biscuits secs", es: "Galletas secas", it: "Gallette", ru: "Галеты", da: "Skibskiks", nb: "Skipskjeks", sv: "Hårda kex", hu: "Tartós keksz", el: "Γαλέτες"}
+    category: lebensmittel
+    unit: pack
+    kcal_per_unit: 600
+    per_person_per_day: 0.1
+    shelf_life_days: 365
+  - name: {de: "Salzstangen / Cracker", en: "Pretzel sticks / crackers", fr: "Bretzels / crackers", es: "Palitos salados / galletas saladas", it: "Salatini / cracker", ru: "Солёные палочки / крекеры", da: "Saltstænger / kiks", nb: "Saltstenger / kjeks", sv: "Saltstänger / kex", hu: "Sósrúd / kréker", el: "Κριτσίνια / κράκερ"}
+    category: lebensmittel
+    unit: pack
+    kcal_per_unit: 750
+    per_person_per_day: 0.1
+    shelf_life_days: 270
+  - name: {de: "Fertiggericht / Eintopf (Konserve)", en: "Ready meal / stew (canned)", fr: "Plat cuisiné / potée (conserve)", es: "Plato preparado / guiso (en conserva)", it: "Piatto pronto / stufato (in scatola)", ru: "Готовое блюдо / рагу (консервы)", da: "Færdigret / gryderet (på dåse)", nb: "Ferdigrett / gryte (hermetisk)", sv: "Färdigrätt / gryta (konserv)", hu: "Készétel / egytálétel (konzerv)", el: "Έτοιμο φαγητό / μαγειρευτό (κονσέρβα)"}
+    category: lebensmittel
+    unit: can
+    kcal_per_unit: 800
+    per_person_per_day: 0.2
+    shelf_life_days: 1095
+    notes: {de: "Für Tage ohne Kochmöglichkeit", en: "For days without cooking facilities", fr: "Pour les jours sans possibilité de cuisiner", es: "Para días sin posibilidad de cocinar", it: "Per i giorni senza possibilità di cucinare", ru: "На дни без возможности готовить", da: "Til dage uden mulighed for madlavning", nb: "For dager uten mulighet til å lage mat", sv: "För dagar utan möjlighet att laga mat", hu: "Főzési lehetőség nélküli napokra", el: "Για ημέρες χωρίς δυνατότητα μαγειρέματος"}
+
+  # --- Drogerie ---
+  - name: {de: "Toilettenpapier", en: "Toilet paper", fr: "Papier toilette", es: "Papel higiénico", it: "Carta igienica", ru: "Туалетная бумага", da: "Toiletpapir", nb: "Toalettpapir", sv: "Toalettpapper", hu: "Toalettpapír", el: "Χαρτί υγείας"}
+    category: drogerie
+    unit: roll
+    per_person_per_day: 0.25
+  - name: {de: "Stückseife", en: "Bar soap", fr: "Savon (pain)", es: "Pastilla de jabón", it: "Saponetta", ru: "Кусковое мыло", da: "Sæbestykke", nb: "Såpestykke", sv: "Tvålstycke", hu: "Darabos szappan", el: "Σαπούνι (πλάκα)"}
+    category: drogerie
+    unit: pcs
+    fixed: 1
+    per_person: 0.5
+  - name: {de: "Zahnpasta", en: "Toothpaste", fr: "Dentifrice", es: "Pasta de dientes", it: "Dentifricio", ru: "Зубная паста", da: "Tandpasta", nb: "Tannkrem", sv: "Tandkräm", hu: "Fogkrém", el: "Οδοντόκρεμα"}
+    category: drogerie
+    unit: tube
+    per_person: 0.5
+  - name: {de: "Müllbeutel", en: "Bin bags", fr: "Sacs poubelle", es: "Bolsas de basura", it: "Sacchi della spazzatura", ru: "Мешки для мусора", da: "Affaldsposer", nb: "Søppelposer", sv: "Soppåsar", hu: "Szemeteszsák", el: "Σακούλες απορριμμάτων"}
+    category: drogerie
+    unit: roll
+    fixed: 1
+
+  # --- Hausapotheke (Details: Vorlage „Hausapotheke detailliert“) ---
+  - name: {de: "Erste-Hilfe-Set (DIN 13164)", en: "First aid kit (DIN 13164)", fr: "Trousse de premiers secours (DIN 13164)", es: "Botiquín de primeros auxilios (DIN 13164)", it: "Kit di pronto soccorso (DIN 13164)", ru: "Аптечка первой помощи (DIN 13164)", da: "Førstehjælpskasse (DIN 13164)", nb: "Førstehjelpsskrin (DIN 13164)", sv: "Första hjälpen-kit (DIN 13164)", hu: "Elsősegélycsomag (DIN 13164)", el: "Κουτί πρώτων βοηθειών (DIN 13164)"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+    shelf_life_days: 1825
+  - name: {de: "Ibuprofen 400 mg", en: "Ibuprofen 400 mg", fr: "Ibuprofène 400 mg", es: "Ibuprofeno 400 mg", it: "Ibuprofene 400 mg", ru: "Ибупрофен 400 мг", da: "Ibuprofen 400 mg", nb: "Ibuprofen 400 mg", sv: "Ibuprofen 400 mg", hu: "Ibuprofen 400 mg", el: "Ιβουπροφαίνη 400 mg"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+    shelf_life_days: 1095
+  - name: {de: "Paracetamol 500 mg", en: "Paracetamol (acetaminophen) 500 mg", fr: "Paracétamol 500 mg", es: "Paracetamol 500 mg", it: "Paracetamolo 500 mg", ru: "Парацетамол 500 мг", da: "Paracetamol 500 mg", nb: "Paracetamol 500 mg", sv: "Paracetamol 500 mg", hu: "Paracetamol 500 mg", el: "Παρακεταμόλη 500 mg"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+    shelf_life_days: 1095
+  - name: {de: "Fieberthermometer", en: "Fever thermometer", fr: "Thermomètre médical", es: "Termómetro clínico", it: "Termometro clinico", ru: "Медицинский термометр", da: "Febertermometer", nb: "Febertermometer", sv: "Febertermometer", hu: "Lázmérő", el: "Θερμόμετρο"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+
+  # --- Haushalt / Energie ---
+  - name: {de: "Taschenlampe", en: "Flashlight", fr: "Lampe de poche", es: "Linterna", it: "Torcia", ru: "Фонарик", da: "Lommelygte", nb: "Lommelykt", sv: "Ficklampa", hu: "Zseblámpa", el: "Φακός"}
+    category: haushalt
+    unit: pcs
+    per_person: 1
+  - name: {de: "Batterien AA", en: "Batteries AA", fr: "Piles AA", es: "Pilas AA", it: "Batterie AA", ru: "Батарейки AA", da: "Batterier AA", nb: "Batterier AA", sv: "Batterier AA", hu: "Elemek AA", el: "Μπαταρίες AA"}
+    category: haushalt
+    unit: pcs
+    fixed: 8
+    per_person: 4
+    step: 4
+    shelf_life_days: 3650
+  - name: {de: "Batterien AAA", en: "Batteries AAA", fr: "Piles AAA", es: "Pilas AAA", it: "Batterie AAA", ru: "Батарейки AAA", da: "Batterier AAA", nb: "Batterier AAA", sv: "Batterier AAA", hu: "Elemek AAA", el: "Μπαταρίες AAA"}
+    category: haushalt
+    unit: pcs
+    fixed: 4
+    per_person: 2
+    step: 4
+    shelf_life_days: 3650
+  - name: {de: "Kurbel- oder Batterieradio", en: "Crank or battery radio", fr: "Radio à manivelle ou à piles", es: "Radio de manivela o de pilas", it: "Radio a manovella o a batterie", ru: "Радио с динамо-машиной или на батарейках", da: "Radio med håndsving eller batterier", nb: "Radio med sveiv eller batterier", sv: "Vev- eller batteriradio", hu: "Tekerős vagy elemes rádió", el: "Ραδιόφωνο με μανιβέλα ή μπαταρίες"}
+    category: haushalt
+    unit: pcs
+    fixed: 1
+  - name: {de: "Kerzen", en: "Candles", fr: "Bougies", es: "Velas", it: "Candele", ru: "Свечи", da: "Stearinlys", nb: "Stearinlys", sv: "Ljus", hu: "Gyertyák", el: "Κεριά"}
+    category: haushalt
+    unit: pcs
+    per_day: 1
+  - name: {de: "Feuerzeug", en: "Lighter", fr: "Briquet", es: "Mechero", it: "Accendino", ru: "Зажигалка", da: "Lighter", nb: "Lighter", sv: "Tändare", hu: "Öngyújtó", el: "Αναπτήρας"}
+    category: haushalt
+    unit: pcs
+    fixed: 1
+  - name: {de: "Streichhölzer", en: "Matches", fr: "Allumettes", es: "Cerillas", it: "Fiammiferi", ru: "Спички", da: "Tændstikker", nb: "Fyrstikker", sv: "Tändstickor", hu: "Gyufa", el: "Σπίρτα"}
+    category: haushalt
+    unit: box
+    fixed: 2
+  - name: {de: "Campingkocher", en: "Camping stove", fr: "Réchaud de camping", es: "Hornillo de camping", it: "Fornello da campeggio", ru: "Туристическая плитка", da: "Campingkomfur", nb: "Turkoker", sv: "Campingkök", hu: "Kempingfőző", el: "Γκαζάκι κάμπινγκ"}
+    category: haushalt
+    unit: pcs
+    fixed: 1
+  - name: {de: "Gaskartuschen", en: "Gas cartridges", fr: "Cartouches de gaz", es: "Cartuchos de gas", it: "Cartucce di gas", ru: "Газовые баллоны", da: "Gaspatroner", nb: "Gassbokser", sv: "Gaspatroner", hu: "Gázpatronok", el: "Φιάλες γκαζιού"}
+    category: haushalt
+    unit: pcs
+    per_day: 0.5
+    min: 2
+    shelf_life_days: 3650
+
+  # --- Dokumente & Geld ---
+  - name: {de: "Bargeld", en: "Cash", fr: "Espèces", es: "Dinero en efectivo", it: "Contanti", ru: "Наличные", da: "Kontanter", nb: "Kontanter", sv: "Kontanter", hu: "Készpénz", el: "Μετρητά"}
+    category: dokumente
+    unit: eur
+    per_person_per_day: 20
+    step: 50
+    notes: {de: "Betrag in Euro – bei anderer Währung entsprechend umrechnen", en: "Amount in euros – convert to your local currency", fr: "Montant en euros – à convertir dans votre devise", es: "Importe en euros – conviértelo a tu moneda local", it: "Importo in euro – convertire nella valuta locale", ru: "Сумма в евро – пересчитайте в местную валюту", da: "Beløb i euro – omregn til din lokale valuta", nb: "Beløp i euro – regn om til lokal valuta", sv: "Belopp i euro – räkna om till lokal valuta", hu: "Összeg euróban – számítsd át helyi pénznemre", el: "Ποσό σε ευρώ – μετατρέψτε στο τοπικό νόμισμα"}
+  - name: {de: "Kopie Personalausweis / Reisepass", en: "Copy of ID card / passport", fr: "Copie carte d'identité / passeport", es: "Copia del DNI / pasaporte", it: "Copia carta d'identità / passaporto", ru: "Копия паспорта / удостоверения личности", da: "Kopi af ID-kort / pas", nb: "Kopi av ID-kort / pass", sv: "Kopia av id-kort / pass", hu: "Személyi igazolvány / útlevél másolata", el: "Αντίγραφο ταυτότητας / διαβατηρίου"}
+    category: dokumente
+    unit: pcs
+    per_person: 1
+  - name: {de: "Kopie Geburts- / Heiratsurkunde", en: "Copy of birth / marriage certificate", fr: "Copie acte de naissance / de mariage", es: "Copia del certificado de nacimiento / matrimonio", it: "Copia certificato di nascita / matrimonio", ru: "Копия свидетельства о рождении / браке", da: "Kopi af fødsels- / vielsesattest", nb: "Kopi av fødsels- / vigselsattest", sv: "Kopia av födelse- / vigselbevis", hu: "Születési / házassági anyakönyvi kivonat másolata", el: "Αντίγραφο ληξιαρχικής πράξης γέννησης / γάμου"}
+    category: dokumente
+    unit: pcs
+    per_person: 1
+  - name: {de: "Kopie Versicherungspolicen", en: "Copy of insurance policies", fr: "Copie des polices d'assurance", es: "Copia de las pólizas de seguro", it: "Copia delle polizze assicurative", ru: "Копии страховых полисов", da: "Kopi af forsikringspolicer", nb: "Kopi av forsikringspoliser", sv: "Kopia av försäkringsbrev", hu: "Biztosítási kötvények másolata", el: "Αντίγραφα ασφαλιστηρίων"}
+    category: dokumente
+    unit: folder
+    fixed: 1
+  - name: {de: "Kopie Impfpass / Medikamentenplan", en: "Copy of vaccination record / medication plan", fr: "Copie carnet de vaccination / plan de médication", es: "Copia de la cartilla de vacunación / plan de medicación", it: "Copia libretto vaccinale / piano terapeutico", ru: "Копия прививочного сертификата / плана приёма лекарств", da: "Kopi af vaccinationskort / medicinplan", nb: "Kopi av vaksinasjonskort / medisinliste", sv: "Kopia av vaccinationskort / läkemedelslista", hu: "Oltási igazolás / gyógyszerlista másolata", el: "Αντίγραφο βιβλιαρίου εμβολίων / πλάνου φαρμάκων"}
+    category: dokumente
+    unit: pcs
+    per_person: 1
+  - name: {de: "Kopie Grundbuch- / Mietvertrag", en: "Copy of title deed / tenancy agreement", fr: "Copie titre de propriété / bail", es: "Copia de escritura / contrato de alquiler", it: "Copia atto di proprietà / contratto d'affitto", ru: "Копия документа о собственности / договора аренды", da: "Kopi af skøde / lejekontrakt", nb: "Kopi av skjøte / leiekontrakt", sv: "Kopia av lagfart / hyreskontrakt", hu: "Tulajdoni lap / bérleti szerződés másolata", el: "Αντίγραφο τίτλου ιδιοκτησίας / μισθωτηρίου"}
+    category: dokumente
+    unit: pcs
+    fixed: 1
+  - name: {de: "Liste wichtiger Telefonnummern", en: "List of important phone numbers", fr: "Liste des numéros de téléphone importants", es: "Lista de teléfonos importantes", it: "Elenco dei numeri di telefono importanti", ru: "Список важных телефонов", da: "Liste over vigtige telefonnumre", nb: "Liste over viktige telefonnumre", sv: "Lista med viktiga telefonnummer", hu: "Fontos telefonszámok listája", el: "Λίστα σημαντικών τηλεφώνων"}
+    category: dokumente
+    unit: pcs
+    fixed: 1

@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Управление запасами, домашней аптечкой и не только. После настройки PrepAssistent появится на боковой панели.",
+        "data": {
+          "warning_days": "Срок предупреждения",
+          "notify_time": "Время ежедневной проверки",
+          "persistent_notification": "Уведомление Home Assistant",
+          "notify_service": "Сервис push-уведомлений (необязательно)",
+          "household_persons": "Человек в семье",
+          "kcal_per_day": "Потребность в энергии на человека в день",
+          "water_per_day": "Питьевая вода на человека в день"
+        },
+        "data_description": {
+          "warning_days": "За сколько дней до истечения срока товар считается «скоро истекает».",
+          "notify_time": "Сроки годности проверяются ежедневно в это время.",
+          "persistent_notification": "Показывать просроченные и скоро истекающие товары в постоянном уведомлении.",
+          "notify_service": "например, notify.mobile_app_moy_telefon – оставьте пустым, чтобы отключить push.",
+          "household_persons": "Основа для расчёта, на сколько хватит запаса.",
+          "kcal_per_day": "Расчётная база BBK: 2200 ккал.",
+          "water_per_day": "Рекомендация BBK: 2 литра (из них 0,5 л на готовку)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent уже настроен."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Настройки PrepAssistent",
+        "data": {
+          "warning_days": "Срок предупреждения",
+          "notify_time": "Время ежедневной проверки",
+          "persistent_notification": "Уведомление Home Assistant",
+          "notify_service": "Сервис push-уведомлений (необязательно)",
+          "household_persons": "Человек в семье",
+          "kcal_per_day": "Потребность в энергии на человека в день",
+          "water_per_day": "Питьевая вода на человека в день"
+        },
+        "data_description": {
+          "warning_days": "За сколько дней до истечения срока товар считается «скоро истекает».",
+          "notify_time": "Сроки годности проверяются ежедневно в это время.",
+          "persistent_notification": "Показывать просроченные и скоро истекающие товары в постоянном уведомлении.",
+          "notify_service": "например, notify.mobile_app_moy_telefon – оставьте пустым, чтобы отключить push.",
+          "household_persons": "Основа для расчёта, на сколько хватит запаса.",
+          "kcal_per_day": "Расчётная база BBK: 2200 ккал.",
+          "water_per_day": "Рекомендация BBK: 2 литра (из них 0,5 л на готовку)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Товаров на складе",
+        "unit_of_measurement": "шт."
+      },
+      "expiring": {
+        "name": "Скоро истекает",
+        "unit_of_measurement": "шт."
+      },
+      "expired": {
+        "name": "Просрочено",
+        "unit_of_measurement": "шт."
+      },
+      "missing": {
+        "name": "Недостающие товары",
+        "unit_of_measurement": "шт."
+      },
+      "next_expiry": {
+        "name": "Ближайший срок годности"
+      },
+      "supply_days": {
+        "name": "Запас дней"
+      },
+      "food_supply_days": {
+        "name": "Запас еды (дней)"
+      },
+      "water_supply_days": {
+        "name": "Запас воды (дней)"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Список покупок"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Добавить товар",
+      "description": "Добавляет товар в список запасов.",
+      "fields": {
+        "name": {
+          "name": "Название",
+          "description": "Название товара."
+        },
+        "list": {
+          "name": "Список",
+          "description": "Название или ID списка. По умолчанию: первый список."
+        },
+        "category": {
+          "name": "Категория",
+          "description": "ID категории, например lebensmittel или hausapotheke."
+        },
+        "quantity": {
+          "name": "Количество",
+          "description": "Количество в наличии."
+        },
+        "target_quantity": {
+          "name": "Целевое количество",
+          "description": "Желаемый уровень запаса."
+        },
+        "unit": {
+          "name": "Единица",
+          "description": "например, шт., кг, л."
+        },
+        "purchase_date": {
+          "name": "Дата покупки",
+          "description": "Когда был куплен товар."
+        },
+        "expiry_date": {
+          "name": "Срок годности",
+          "description": "Дата «годен до» или срок годности."
+        },
+        "location": {
+          "name": "Место хранения",
+          "description": "Где хранится товар."
+        },
+        "notes": {
+          "name": "Заметки",
+          "description": "Произвольный текст."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Израсходовать товар",
+      "description": "Уменьшает запас товара. При указании названия используется партия с самым ранним сроком.",
+      "fields": {
+        "item_id": {
+          "name": "ID товара",
+          "description": "ID товара."
+        },
+        "name": {
+          "name": "Название",
+          "description": "Вместо ID: название товара."
+        },
+        "list": {
+          "name": "Список",
+          "description": "При необходимости ограничить одним списком."
+        },
+        "amount": {
+          "name": "Количество",
+          "description": "Израсходованное количество."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Применить шаблон",
+      "description": "Рассчитывает шаблон для заданного числа людей и дней и добавляет его как список покупок.",
+      "fields": {
+        "template": {
+          "name": "Шаблон",
+          "description": "ID шаблона."
+        },
+        "persons": {
+          "name": "Человек",
+          "description": "Количество людей."
+        },
+        "days": {
+          "name": "Дней",
+          "description": "Количество дней."
+        },
+        "list": {
+          "name": "Список",
+          "description": "Существующий список (название/ID) или название нового списка."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Проверить сроки годности",
+      "description": "Сразу проверяет все сроки годности и при необходимости отправляет предупреждения."
+    },
+    "reload_templates": {
+      "name": "Перезагрузить шаблоны",
+      "description": "Заново загружает все файлы шаблонов."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Продукты",
+        "getraenke": "Напитки",
+        "hausapotheke": "Аптечка",
+        "drogerie": "Гигиена",
+        "haushalt": "Хозяйство и энергия",
+        "dokumente": "Документы и наличные",
+        "tiere": "Домашние животные",
+        "sonstiges": "Прочее"
+      }
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Administrer matlager, husapotek og mer. Etter oppsett vises PrepAssistent i sidepanelet.",
+        "data": {
+          "warning_days": "Varslingsfrist",
+          "notify_time": "Tidspunkt for daglig kontroll",
+          "persistent_notification": "Home Assistant-varsel",
+          "notify_service": "Push-varslingstjeneste (valgfritt)",
+          "household_persons": "Personer i husholdningen",
+          "kcal_per_day": "Energibehov per person og dag",
+          "water_per_day": "Drikkevann per person og dag"
+        },
+        "data_description": {
+          "warning_days": "Hvor mange dager før utløp en vare regnes som snart utløpt.",
+          "notify_time": "Utløpsdatoer kontrolleres daglig på dette tidspunktet.",
+          "persistent_notification": "Viser utløpte og snart utløpte varer som et vedvarende varsel.",
+          "notify_service": "f.eks. notify.mobile_app_min_telefon – la stå tomt for ingen push.",
+          "household_persons": "Grunnlag for lagerets rekkevidde.",
+          "kcal_per_day": "Tyske BBKs beregningsgrunnlag: 2200 kcal.",
+          "water_per_day": "Tyske BBKs anbefaling: 2 liter (0,5 l av dette til matlaging)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent er allerede konfigurert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Innstillinger for PrepAssistent",
+        "data": {
+          "warning_days": "Varslingsfrist",
+          "notify_time": "Tidspunkt for daglig kontroll",
+          "persistent_notification": "Home Assistant-varsel",
+          "notify_service": "Push-varslingstjeneste (valgfritt)",
+          "household_persons": "Personer i husholdningen",
+          "kcal_per_day": "Energibehov per person og dag",
+          "water_per_day": "Drikkevann per person og dag"
+        },
+        "data_description": {
+          "warning_days": "Hvor mange dager før utløp en vare regnes som snart utløpt.",
+          "notify_time": "Utløpsdatoer kontrolleres daglig på dette tidspunktet.",
+          "persistent_notification": "Viser utløpte og snart utløpte varer som et vedvarende varsel.",
+          "notify_service": "f.eks. notify.mobile_app_min_telefon – la stå tomt for ingen push.",
+          "household_persons": "Grunnlag for lagerets rekkevidde.",
+          "kcal_per_day": "Tyske BBKs beregningsgrunnlag: 2200 kcal.",
+          "water_per_day": "Tyske BBKs anbefaling: 2 liter (0,5 l av dette til matlaging)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Varer på lager",
+        "unit_of_measurement": "varer"
+      },
+      "expiring": {
+        "name": "Utløper snart",
+        "unit_of_measurement": "varer"
+      },
+      "expired": {
+        "name": "Utløpt",
+        "unit_of_measurement": "varer"
+      },
+      "missing": {
+        "name": "Manglende varer",
+        "unit_of_measurement": "varer"
+      },
+      "next_expiry": {
+        "name": "Neste utløpsdato"
+      },
+      "supply_days": {
+        "name": "Rekkevidde"
+      },
+      "food_supply_days": {
+        "name": "Rekkevidde mat"
+      },
+      "water_supply_days": {
+        "name": "Rekkevidde vann"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Handleliste"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Legg til vare",
+      "description": "Legger til en vare i en lagerliste.",
+      "fields": {
+        "name": {
+          "name": "Navn",
+          "description": "Varens navn."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Listens navn eller ID. Standard: den første listen."
+        },
+        "category": {
+          "name": "Kategori",
+          "description": "Kategori-ID, f.eks. lebensmittel eller hausapotheke."
+        },
+        "quantity": {
+          "name": "Mengde",
+          "description": "Mengde på lager."
+        },
+        "target_quantity": {
+          "name": "Målmengde",
+          "description": "Ønsket lagernivå."
+        },
+        "unit": {
+          "name": "Enhet",
+          "description": "f.eks. stk, kg, l."
+        },
+        "purchase_date": {
+          "name": "Kjøpsdato",
+          "description": "Når varen ble kjøpt."
+        },
+        "expiry_date": {
+          "name": "Utløpsdato",
+          "description": "Best før- eller siste forbruksdag."
+        },
+        "location": {
+          "name": "Lagringssted",
+          "description": "Hvor varen oppbevares."
+        },
+        "notes": {
+          "name": "Notater",
+          "description": "Fritekst."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Forbruk vare",
+      "description": "Reduserer beholdningen av en vare. Ved navn brukes partiet som utløper først.",
+      "fields": {
+        "item_id": {
+          "name": "Vare-ID",
+          "description": "Varens ID."
+        },
+        "name": {
+          "name": "Navn",
+          "description": "Alternativ til ID: varens navn."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Begrens eventuelt til én liste."
+        },
+        "amount": {
+          "name": "Mengde",
+          "description": "Forbrukt mengde."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Bruk mal",
+      "description": "Beregner en mal for personer og dager og legger den til som handleliste.",
+      "fields": {
+        "template": {
+          "name": "Mal",
+          "description": "Malens ID."
+        },
+        "persons": {
+          "name": "Personer",
+          "description": "Antall personer."
+        },
+        "days": {
+          "name": "Dager",
+          "description": "Antall dager."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Eksisterende liste (navn/ID) eller navn på en ny liste."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Kontroller utløpsdatoer",
+      "description": "Kontrollerer alle utløpsdatoer umiddelbart og sender varsler ved behov."
+    },
+    "reload_templates": {
+      "name": "Last inn maler på nytt",
+      "description": "Laster inn alle malfiler på nytt."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Matvarer",
+        "getraenke": "Drikke",
+        "hausapotheke": "Husapotek",
+        "drogerie": "Hygiene og pleie",
+        "haushalt": "Husholdning og energi",
+        "dokumente": "Dokumenter og kontanter",
+        "tiere": "Kjæledyr",
+        "sonstiges": "Annet"
+      }
+    }
+  }
+}

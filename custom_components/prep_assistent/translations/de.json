@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Vorratskammern, Hausapotheke & Co. verwalten. Nach der Einrichtung erscheint „PrepAssistent“ in der Seitenleiste.",
+        "data": {
+          "warning_days": "Warnvorlauf",
+          "notify_time": "Uhrzeit der täglichen Prüfung",
+          "persistent_notification": "Benachrichtigung in Home Assistant",
+          "notify_service": "Push-Benachrichtigungsdienst (optional)",
+          "household_persons": "Personen im Haushalt",
+          "kcal_per_day": "Energiebedarf pro Person und Tag",
+          "water_per_day": "Trinkwasser pro Person und Tag"
+        },
+        "data_description": {
+          "warning_days": "Wie viele Tage vor Ablauf ein Artikel als „läuft bald ab“ gilt.",
+          "notify_time": "Zu dieser Uhrzeit wird täglich geprüft und ggf. gewarnt.",
+          "persistent_notification": "Zeigt abgelaufene und bald ablaufende Artikel als Benachrichtigung in HA an.",
+          "notify_service": "z. B. notify.mobile_app_mein_handy – leer lassen für keine Push-Nachricht.",
+          "household_persons": "Grundlage für die Reichweite des Vorrats.",
+          "kcal_per_day": "BBK-Rechengrundlage: 2200 kcal.",
+          "water_per_day": "BBK-Empfehlung: 2 Liter (davon 0,5 l zum Kochen)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "PrepAssistent Einstellungen",
+        "data": {
+          "warning_days": "Warnvorlauf",
+          "notify_time": "Uhrzeit der täglichen Prüfung",
+          "persistent_notification": "Benachrichtigung in Home Assistant",
+          "notify_service": "Push-Benachrichtigungsdienst (optional)",
+          "household_persons": "Personen im Haushalt",
+          "kcal_per_day": "Energiebedarf pro Person und Tag",
+          "water_per_day": "Trinkwasser pro Person und Tag"
+        },
+        "data_description": {
+          "warning_days": "Wie viele Tage vor Ablauf ein Artikel als „läuft bald ab“ gilt.",
+          "notify_time": "Zu dieser Uhrzeit wird täglich geprüft und ggf. gewarnt.",
+          "persistent_notification": "Zeigt abgelaufene und bald ablaufende Artikel als Benachrichtigung in HA an.",
+          "notify_service": "z. B. notify.mobile_app_mein_handy – leer lassen für keine Push-Nachricht.",
+          "household_persons": "Grundlage für die Reichweite des Vorrats.",
+          "kcal_per_day": "BBK-Rechengrundlage: 2200 kcal.",
+          "water_per_day": "BBK-Empfehlung: 2 Liter (davon 0,5 l zum Kochen)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Artikel auf Lager",
+        "unit_of_measurement": "Artikel"
+      },
+      "expiring": {
+        "name": "Läuft bald ab",
+        "unit_of_measurement": "Artikel"
+      },
+      "expired": {
+        "name": "Abgelaufen",
+        "unit_of_measurement": "Artikel"
+      },
+      "missing": {
+        "name": "Fehlende Artikel",
+        "unit_of_measurement": "Artikel"
+      },
+      "next_expiry": {
+        "name": "Nächstes Ablaufdatum"
+      },
+      "supply_days": {
+        "name": "Reichweite"
+      },
+      "food_supply_days": {
+        "name": "Reichweite Nahrung"
+      },
+      "water_supply_days": {
+        "name": "Reichweite Wasser"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Einkaufsliste"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Artikel hinzufügen",
+      "description": "Fügt einer Vorratsliste einen Artikel hinzu.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Bezeichnung des Artikels."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Name oder ID der Liste. Standard: erste Liste."
+        },
+        "category": {
+          "name": "Kategorie",
+          "description": "Kategorie-ID, z. B. lebensmittel oder hausapotheke."
+        },
+        "quantity": {
+          "name": "Menge",
+          "description": "Vorhandene Menge."
+        },
+        "target_quantity": {
+          "name": "Soll-Menge",
+          "description": "Gewünschte Vorratsmenge."
+        },
+        "unit": {
+          "name": "Einheit",
+          "description": "z. B. Stk, kg, l."
+        },
+        "purchase_date": {
+          "name": "Anschaffungsdatum",
+          "description": "Wann der Artikel gekauft wurde."
+        },
+        "expiry_date": {
+          "name": "Ablaufdatum",
+          "description": "Mindesthaltbarkeits- bzw. Verfallsdatum."
+        },
+        "location": {
+          "name": "Lagerort",
+          "description": "Wo der Artikel gelagert wird."
+        },
+        "notes": {
+          "name": "Notizen",
+          "description": "Freitext."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Artikel verbrauchen",
+      "description": "Reduziert den Bestand eines Artikels. Bei Angabe des Namens wird die Charge verwendet, die am frühesten abläuft.",
+      "fields": {
+        "item_id": {
+          "name": "Artikel-ID",
+          "description": "ID des Artikels."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Alternativ zur ID: Name des Artikels."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Optional auf eine Liste einschränken."
+        },
+        "amount": {
+          "name": "Menge",
+          "description": "Verbrauchte Menge."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Vorlage anwenden",
+      "description": "Berechnet eine Vorlage für Personen und Tage und übernimmt sie als Einkaufsliste.",
+      "fields": {
+        "template": {
+          "name": "Vorlage",
+          "description": "ID der Vorlage."
+        },
+        "persons": {
+          "name": "Personen",
+          "description": "Anzahl der Personen."
+        },
+        "days": {
+          "name": "Tage",
+          "description": "Anzahl der Tage."
+        },
+        "list": {
+          "name": "Liste",
+          "description": "Bestehende Liste (Name/ID) oder Name einer neuen Liste."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Ablaufdaten prüfen",
+      "description": "Prüft sofort alle Ablaufdaten und sendet ggf. Warnungen."
+    },
+    "reload_templates": {
+      "name": "Vorlagen neu laden",
+      "description": "Lädt alle Vorlagendateien neu."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Lebensmittel",
+        "getraenke": "Getränke",
+        "hausapotheke": "Hausapotheke",
+        "drogerie": "Drogerie & Hygiene",
+        "haushalt": "Haushalt & Energie",
+        "dokumente": "Dokumente & Bargeld",
+        "tiere": "Haustiere",
+        "sonstiges": "Sonstiges"
+      }
+    }
+  }
+}

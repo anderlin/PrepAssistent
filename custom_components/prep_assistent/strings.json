@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Manage pantries, first aid supplies and more. After setup, PrepAssistent appears in the sidebar.",
+        "data": {
+          "warning_days": "Warning lead time",
+          "notify_time": "Time of daily check",
+          "persistent_notification": "Home Assistant notification",
+          "notify_service": "Push notify service (optional)",
+          "household_persons": "People in household",
+          "kcal_per_day": "Energy need per person and day",
+          "water_per_day": "Drinking water per person and day"
+        },
+        "data_description": {
+          "warning_days": "How many days before expiry an item counts as expiring soon.",
+          "notify_time": "Expiry dates are checked daily at this time.",
+          "persistent_notification": "Show expired and expiring items as a persistent notification.",
+          "notify_service": "e.g. notify.mobile_app_my_phone – leave empty to disable push.",
+          "household_persons": "Basis for the supply range.",
+          "kcal_per_day": "German BBK basis: 2200 kcal.",
+          "water_per_day": "German BBK recommendation: 2 litres (0.5 l of it for cooking)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "PrepAssistent options",
+        "data": {
+          "warning_days": "Warning lead time",
+          "notify_time": "Time of daily check",
+          "persistent_notification": "Home Assistant notification",
+          "notify_service": "Push notify service (optional)",
+          "household_persons": "People in household",
+          "kcal_per_day": "Energy need per person and day",
+          "water_per_day": "Drinking water per person and day"
+        },
+        "data_description": {
+          "warning_days": "How many days before expiry an item counts as expiring soon.",
+          "notify_time": "Expiry dates are checked daily at this time.",
+          "persistent_notification": "Show expired and expiring items as a persistent notification.",
+          "notify_service": "e.g. notify.mobile_app_my_phone – leave empty to disable push.",
+          "household_persons": "Basis for the supply range.",
+          "kcal_per_day": "German BBK basis: 2200 kcal.",
+          "water_per_day": "German BBK recommendation: 2 litres (0.5 l of it for cooking)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Items in stock",
+        "unit_of_measurement": "items"
+      },
+      "expiring": {
+        "name": "Expiring soon",
+        "unit_of_measurement": "items"
+      },
+      "expired": {
+        "name": "Expired",
+        "unit_of_measurement": "items"
+      },
+      "missing": {
+        "name": "Missing items",
+        "unit_of_measurement": "items"
+      },
+      "next_expiry": {
+        "name": "Next expiry date"
+      },
+      "supply_days": {
+        "name": "Supply range"
+      },
+      "food_supply_days": {
+        "name": "Food supply range"
+      },
+      "water_supply_days": {
+        "name": "Water supply range"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Shopping list"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Add item",
+      "description": "Adds an item to a pantry list.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Item name."
+        },
+        "list": {
+          "name": "List",
+          "description": "List name or ID. Defaults to the first list."
+        },
+        "category": {
+          "name": "Category",
+          "description": "Category ID, e.g. lebensmittel or hausapotheke."
+        },
+        "quantity": {
+          "name": "Quantity",
+          "description": "Quantity in stock."
+        },
+        "target_quantity": {
+          "name": "Target quantity",
+          "description": "Desired stock level."
+        },
+        "unit": {
+          "name": "Unit",
+          "description": "e.g. pcs, kg, l."
+        },
+        "purchase_date": {
+          "name": "Purchase date",
+          "description": "When the item was bought."
+        },
+        "expiry_date": {
+          "name": "Expiry date",
+          "description": "Best-before or expiry date."
+        },
+        "location": {
+          "name": "Location",
+          "description": "Where the item is stored."
+        },
+        "notes": {
+          "name": "Notes",
+          "description": "Free text."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Consume item",
+      "description": "Reduces an item's stock. When using the name, the batch expiring first is used.",
+      "fields": {
+        "item_id": {
+          "name": "Item ID",
+          "description": "ID of the item."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Alternative to the ID: item name."
+        },
+        "list": {
+          "name": "List",
+          "description": "Optionally restrict to one list."
+        },
+        "amount": {
+          "name": "Amount",
+          "description": "Amount consumed."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Apply template",
+      "description": "Calculates a template for persons and days and adds it as a shopping list.",
+      "fields": {
+        "template": {
+          "name": "Template",
+          "description": "Template ID."
+        },
+        "persons": {
+          "name": "Persons",
+          "description": "Number of persons."
+        },
+        "days": {
+          "name": "Days",
+          "description": "Number of days."
+        },
+        "list": {
+          "name": "List",
+          "description": "Existing list (name/ID) or name of a new list."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Check expiry dates",
+      "description": "Checks all expiry dates now and sends warnings if needed."
+    },
+    "reload_templates": {
+      "name": "Reload templates",
+      "description": "Reloads all template files."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Food",
+        "getraenke": "Drinks",
+        "hausapotheke": "First aid & medicine",
+        "drogerie": "Toiletries & hygiene",
+        "haushalt": "Household & energy",
+        "dokumente": "Documents & cash",
+        "tiere": "Pets",
+        "sonstiges": "Other"
+      }
+    }
+  }
+}

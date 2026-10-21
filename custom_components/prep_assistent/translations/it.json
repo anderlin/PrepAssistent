@@ -1,0 +1,207 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PrepAssistent",
+        "description": "Gestisci dispense, farmacia di casa e altro. Dopo la configurazione PrepAssistent compare nella barra laterale.",
+        "data": {
+          "warning_days": "Preavviso",
+          "notify_time": "Ora del controllo giornaliero",
+          "persistent_notification": "Notifica di Home Assistant",
+          "notify_service": "Servizio di notifica push (facoltativo)",
+          "household_persons": "Persone in casa",
+          "kcal_per_day": "Fabbisogno energetico per persona al giorno",
+          "water_per_day": "Acqua potabile per persona al giorno"
+        },
+        "data_description": {
+          "warning_days": "Quanti giorni prima della scadenza un articolo è considerato in scadenza.",
+          "notify_time": "Le date di scadenza vengono controllate ogni giorno a quest'ora.",
+          "persistent_notification": "Mostra gli articoli scaduti o in scadenza come notifica persistente.",
+          "notify_service": "es. notify.mobile_app_mio_telefono – lascia vuoto per non inviare push.",
+          "household_persons": "Base per il calcolo dell'autonomia della scorta.",
+          "kcal_per_day": "Base di calcolo del BBK tedesco: 2200 kcal.",
+          "water_per_day": "Raccomandazione del BBK tedesco: 2 litri (di cui 0,5 l per cucinare)."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "PrepAssistent è già configurato."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni di PrepAssistent",
+        "data": {
+          "warning_days": "Preavviso",
+          "notify_time": "Ora del controllo giornaliero",
+          "persistent_notification": "Notifica di Home Assistant",
+          "notify_service": "Servizio di notifica push (facoltativo)",
+          "household_persons": "Persone in casa",
+          "kcal_per_day": "Fabbisogno energetico per persona al giorno",
+          "water_per_day": "Acqua potabile per persona al giorno"
+        },
+        "data_description": {
+          "warning_days": "Quanti giorni prima della scadenza un articolo è considerato in scadenza.",
+          "notify_time": "Le date di scadenza vengono controllate ogni giorno a quest'ora.",
+          "persistent_notification": "Mostra gli articoli scaduti o in scadenza come notifica persistente.",
+          "notify_service": "es. notify.mobile_app_mio_telefono – lascia vuoto per non inviare push.",
+          "household_persons": "Base per il calcolo dell'autonomia della scorta.",
+          "kcal_per_day": "Base di calcolo del BBK tedesco: 2200 kcal.",
+          "water_per_day": "Raccomandazione del BBK tedesco: 2 litri (di cui 0,5 l per cucinare)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stock": {
+        "name": "Articoli in magazzino",
+        "unit_of_measurement": "articoli"
+      },
+      "expiring": {
+        "name": "In scadenza",
+        "unit_of_measurement": "articoli"
+      },
+      "expired": {
+        "name": "Scaduti",
+        "unit_of_measurement": "articoli"
+      },
+      "missing": {
+        "name": "Articoli mancanti",
+        "unit_of_measurement": "articoli"
+      },
+      "next_expiry": {
+        "name": "Prossima scadenza"
+      },
+      "supply_days": {
+        "name": "Autonomia"
+      },
+      "food_supply_days": {
+        "name": "Autonomia cibo"
+      },
+      "water_supply_days": {
+        "name": "Autonomia acqua"
+      }
+    },
+    "todo": {
+      "shopping_list": {
+        "name": "Lista della spesa"
+      }
+    }
+  },
+  "services": {
+    "add_item": {
+      "name": "Aggiungi articolo",
+      "description": "Aggiunge un articolo a una lista delle scorte.",
+      "fields": {
+        "name": {
+          "name": "Nome",
+          "description": "Nome dell'articolo."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Nome o ID della lista. Predefinita: la prima lista."
+        },
+        "category": {
+          "name": "Categoria",
+          "description": "ID della categoria, es. lebensmittel o hausapotheke."
+        },
+        "quantity": {
+          "name": "Quantità",
+          "description": "Quantità disponibile."
+        },
+        "target_quantity": {
+          "name": "Quantità obiettivo",
+          "description": "Livello di scorta desiderato."
+        },
+        "unit": {
+          "name": "Unità",
+          "description": "es. pz., kg, l."
+        },
+        "purchase_date": {
+          "name": "Data di acquisto",
+          "description": "Quando è stato acquistato l'articolo."
+        },
+        "expiry_date": {
+          "name": "Data di scadenza",
+          "description": "Data di consumo preferibile o di scadenza."
+        },
+        "location": {
+          "name": "Posizione",
+          "description": "Dove è conservato l'articolo."
+        },
+        "notes": {
+          "name": "Note",
+          "description": "Testo libero."
+        }
+      }
+    },
+    "consume_item": {
+      "name": "Consuma articolo",
+      "description": "Riduce la scorta di un articolo. Indicando il nome, viene usato il lotto che scade per primo.",
+      "fields": {
+        "item_id": {
+          "name": "ID articolo",
+          "description": "ID dell'articolo."
+        },
+        "name": {
+          "name": "Nome",
+          "description": "In alternativa all'ID: nome dell'articolo."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Limita facoltativamente a una lista."
+        },
+        "amount": {
+          "name": "Quantità",
+          "description": "Quantità consumata."
+        }
+      }
+    },
+    "apply_template": {
+      "name": "Applica modello",
+      "description": "Calcola un modello per persone e giorni e lo aggiunge come lista della spesa.",
+      "fields": {
+        "template": {
+          "name": "Modello",
+          "description": "ID del modello."
+        },
+        "persons": {
+          "name": "Persone",
+          "description": "Numero di persone."
+        },
+        "days": {
+          "name": "Giorni",
+          "description": "Numero di giorni."
+        },
+        "list": {
+          "name": "Lista",
+          "description": "Lista esistente (nome/ID) o nome di una nuova lista."
+        }
+      }
+    },
+    "check_expiry": {
+      "name": "Controlla scadenze",
+      "description": "Controlla subito tutte le date di scadenza e invia avvisi se necessario."
+    },
+    "reload_templates": {
+      "name": "Ricarica modelli",
+      "description": "Ricarica tutti i file dei modelli."
+    }
+  },
+  "selector": {
+    "category": {
+      "options": {
+        "lebensmittel": "Alimenti",
+        "getraenke": "Bevande",
+        "hausapotheke": "Farmacia di casa",
+        "drogerie": "Igiene e cura",
+        "haushalt": "Casa ed energia",
+        "dokumente": "Documenti e contanti",
+        "tiere": "Animali",
+        "sonstiges": "Altro"
+      }
+    }
+  }
+}

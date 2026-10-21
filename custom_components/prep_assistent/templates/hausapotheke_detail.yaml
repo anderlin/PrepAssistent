@@ -1,0 +1,136 @@
+# Detaillierte Variante von hausapotheke.yaml: Sammelposten sind in Einzelartikel zerlegt,
+# damit jeder Artikel einzeln nachverfolgt werden kann (Bestand, Verfallsdatum).
+id: hausapotheke_detail
+name: {de: "Hausapotheke detailliert (Beispiel)", en: "Home medicine cabinet, detailed (example)", fr: "Pharmacie familiale détaillée (exemple)", es: "Botiquín doméstico detallado (ejemplo)", it: "Farmacia di casa dettagliata (esempio)", ru: "Домашняя аптечка, подробно (пример)", da: "Husapotek, detaljeret (eksempel)", nb: "Husapotek, detaljert (eksempel)", sv: "Husapotek, detaljerat (exempel)", hu: "Házipatika, részletes (példa)", el: "Φαρμακείο σπιτιού, αναλυτικό (παράδειγμα)"}
+description:
+  de: Wie „Hausapotheke (Beispiel)“, aber jeder Sammelposten ist in Einzelartikel aufgeteilt. Verbrauchsmaterial skaliert mit der Personenzahl.
+  en: Like “Home medicine cabinet (example)”, but every combined item is split into individual items. Consumables scale with the number of persons.
+  fr: Comme « Pharmacie familiale (exemple) », mais chaque poste groupé est divisé en articles individuels. Les consommables varient selon le nombre de personnes.
+  es: Como «Botiquín doméstico (ejemplo)», pero cada partida agrupada se divide en artículos individuales. El material consumible se ajusta al número de personas.
+  it: Come «Farmacia di casa (esempio)», ma ogni voce raggruppata è suddivisa in singoli articoli. Il materiale di consumo si adatta al numero di persone.
+  ru: Как «Домашняя аптечка (пример)», но каждая сборная позиция разбита на отдельные товары. Расходные материалы рассчитываются по числу людей.
+  da: Som »Husapotek (eksempel)«, men hver samlepost er opdelt i enkelte varer. Forbrugsvarer skaleres efter antal personer.
+  nb: Som «Husapotek (eksempel)», men hver samlepost er delt opp i enkeltvarer. Forbruksmateriell skaleres etter antall personer.
+  sv: Som ”Husapotek (exempel)”, men varje samlingspost är uppdelad i enskilda artiklar. Förbrukningsmaterial anpassas efter antal personer.
+  hu: Mint a „Házipatika (példa)”, de minden összevont tétel külön tételekre van bontva. A fogyóeszközök a személyek számával arányosak.
+  el: Όπως το «Φαρμακείο σπιτιού (παράδειγμα)», αλλά κάθε ομαδοποιημένο είδος χωρίζεται σε μεμονωμένα είδη. Τα αναλώσιμα προσαρμόζονται στον αριθμό των ατόμων.
+default_persons: 2
+default_days: 30
+items:
+  # --- Pflaster ---
+  - name: {de: "Pflaster-Strips (sortiert)", en: "Plaster strips (assorted)", fr: "Pansements prédécoupés (assortis)", es: "Tiritas (surtidas)", it: "Cerotti (assortiti)", ru: "Пластыри (ассорти)", da: "Plastre (assorterede)", nb: "Plaster (assortert)", sv: "Plåster (sorterade)", hu: "Sebtapaszok (vegyes)", el: "Τσιρότα (διάφορα)"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+    per_person: 0.5
+  - name: {de: "Pflaster-Rolle (Fixierpflaster)", en: "Adhesive tape roll", fr: "Sparadrap en rouleau", es: "Esparadrapo en rollo", it: "Cerotto in rotolo", ru: "Пластырь в рулоне", da: "Plasterrulle", nb: "Plasterrull", sv: "Häftplåster på rulle", hu: "Ragtapasz tekercs", el: "Λευκοπλάστης σε ρολό"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+  - name: {de: "Blasenpflaster", en: "Blister plasters", fr: "Pansements pour ampoules", es: "Apósitos para ampollas", it: "Cerotti per vesciche", ru: "Пластыри от мозолей", da: "Vabelplastre", nb: "Gnagsårplaster", sv: "Skavsårsplåster", hu: "Hólyagtapasz", el: "Επιθέματα για φουσκάλες"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+
+  # --- Verbandmaterial ---
+  - name: {de: "Mullbinden", en: "Gauze bandages", fr: "Bandes de gaze", es: "Vendas de gasa", it: "Bende di garza", ru: "Марлевые бинты", da: "Gazebind", nb: "Gasbind", sv: "Gasbindor", hu: "Gézpólya", el: "Επίδεσμοι γάζας"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 2
+    per_person: 1
+    shelf_life_days: 1825
+  - name: {de: "Elastische Binden", en: "Elastic bandages", fr: "Bandes élastiques", es: "Vendas elásticas", it: "Bende elastiche", ru: "Эластичные бинты", da: "Elastikbind", nb: "Elastiske bind", sv: "Elastiska bindor", hu: "Rugalmas pólya", el: "Ελαστικοί επίδεσμοι"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 2
+    shelf_life_days: 1825
+  - name: {de: "Sterile Kompressen", en: "Sterile compresses", fr: "Compresses stériles", es: "Gasas estériles", it: "Garze sterili", ru: "Стерильные салфетки", da: "Sterile kompresser", nb: "Sterile kompresser", sv: "Sterila kompresser", hu: "Steril gézlapok", el: "Αποστειρωμένες γάζες"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 5
+    per_person: 2
+    step: 5
+    shelf_life_days: 1825
+  - name: {de: "Verbandpäckchen", en: "Wound dressing packs", fr: "Pansements individuels", es: "Paquetes de vendaje", it: "Pacchetti di medicazione", ru: "Перевязочные пакеты", da: "Forbindingspakker", nb: "Førstehjelpsbandasjer", sv: "Förbandspaket", hu: "Sebkötöző csomag", el: "Πακέτα επίδεσης"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+    per_person: 1
+    shelf_life_days: 1825
+  - name: {de: "Dreiecktuch", en: "Triangular bandage", fr: "Bandage triangulaire", es: "Venda triangular", it: "Bendaggio triangolare", ru: "Треугольная косынка", da: "Trekantklæde", nb: "Trekantklut", sv: "Trekantsduk", hu: "Háromszögletű kendő", el: "Τριγωνικός επίδεσμος"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+
+  # --- Desinfektion ---
+  - name: {de: "Wunddesinfektion (Spray)", en: "Wound disinfectant (spray)", fr: "Désinfectant pour plaies (spray)", es: "Desinfectante de heridas (spray)", it: "Disinfettante per ferite (spray)", ru: "Антисептик для ран (спрей)", da: "Sårdesinfektion (spray)", nb: "Sårdesinfeksjon (spray)", sv: "Sårdesinfektion (spray)", hu: "Sebfertőtlenítő (spray)", el: "Αντισηπτικό για πληγές (σπρέι)"}
+    category: hausapotheke
+    unit: bottle
+    fixed: 1
+    shelf_life_days: 1095
+  - name: {de: "Händedesinfektion", en: "Hand sanitiser", fr: "Désinfectant pour les mains", es: "Desinfectante de manos", it: "Disinfettante per le mani", ru: "Антисептик для рук", da: "Hånddesinfektion", nb: "Hånddesinfeksjon", sv: "Handdesinfektion", hu: "Kézfertőtlenítő", el: "Αντισηπτικό χεριών"}
+    category: hausapotheke
+    unit: bottle
+    fixed: 1
+    shelf_life_days: 1095
+
+  # --- Schmerz & Fieber ---
+  - name: {de: "Ibuprofen 400 mg", en: "Ibuprofen 400 mg", fr: "Ibuprofène 400 mg", es: "Ibuprofeno 400 mg", it: "Ibuprofene 400 mg", ru: "Ибупрофен 400 мг", da: "Ibuprofen 400 mg", nb: "Ibuprofen 400 mg", sv: "Ibuprofen 400 mg", hu: "Ibuprofen 400 mg", el: "Ιβουπροφαίνη 400 mg"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+    per_person: 0.5
+    shelf_life_days: 1095
+  - name: {de: "Paracetamol 500 mg", en: "Paracetamol (acetaminophen) 500 mg", fr: "Paracétamol 500 mg", es: "Paracetamol 500 mg", it: "Paracetamolo 500 mg", ru: "Парацетамол 500 мг", da: "Paracetamol 500 mg", nb: "Paracetamol 500 mg", sv: "Paracetamol 500 mg", hu: "Paracetamol 500 mg", el: "Παρακεταμόλη 500 mg"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+    shelf_life_days: 1095
+    notes: {de: "Bei Kindern Fiebersaft / Zäpfchen in passender Dosierung", en: "For children use syrup / suppositories in a suitable dose", fr: "Pour les enfants : sirop / suppositoires au dosage adapté", es: "Para niños: jarabe / supositorios en la dosis adecuada", it: "Per i bambini: sciroppo / supposte nel dosaggio adatto", ru: "Для детей – сироп / свечи в подходящей дозировке", da: "Til børn: mikstur / stikpiller i passende dosis", nb: "For barn: mikstur / stikkpiller i passende dose", sv: "För barn: mixtur / stolpiller i lämplig dos", hu: "Gyermekeknek szirup / kúp megfelelő adagolásban", el: "Για παιδιά: σιρόπι / υπόθετα σε κατάλληλη δόση"}
+
+  # --- Magen & Darm ---
+  - name: {de: "Loperamid (Durchfall)", en: "Loperamide (diarrhoea)", fr: "Lopéramide (diarrhée)", es: "Loperamida (diarrea)", it: "Loperamide (diarrea)", ru: "Лоперамид (от диареи)", da: "Loperamid (diarré)", nb: "Loperamid (diaré)", sv: "Loperamid (diarré)", hu: "Loperamid (hasmenés)", el: "Λοπεραμίδη (διάρροια)"}
+    category: hausapotheke
+    unit: pack
+    fixed: 1
+    shelf_life_days: 1095
+  - name: {de: "Elektrolytpulver", en: "Oral rehydration salts", fr: "Sels de réhydratation orale", es: "Sales de rehidratación oral", it: "Sali reidratanti orali", ru: "Соли для регидратации", da: "Væskeerstatning (pulver)", nb: "Væskeerstatning (pulver)", sv: "Vätskeersättning (pulver)", hu: "Elektrolitpor", el: "Άλατα επανυδάτωσης"}
+    category: hausapotheke
+    unit: bag
+    per_person: 5
+    step: 5
+    shelf_life_days: 1095
+
+  # --- Persönliches ---
+  - name: {de: "Persönliche Dauermedikamente", en: "Personal long-term medication", fr: "Traitement personnel de fond", es: "Medicación personal habitual", it: "Farmaci personali abituali", ru: "Личные постоянные лекарства", da: "Personlig fast medicin", nb: "Personlige faste medisiner", sv: "Egna stående läkemedel", hu: "Saját rendszeres gyógyszerek", el: "Προσωπικά φάρμακα μακροχρόνιας χρήσης"}
+    category: hausapotheke
+    unit: daily_dose
+    per_person_per_day: 1
+    notes: {de: "Mit Arzt / Apotheke abstimmen", en: "Coordinate with your doctor / pharmacy", fr: "À voir avec votre médecin / pharmacie", es: "Consultar con el médico / farmacia", it: "Concordare con medico / farmacia", ru: "Согласуйте с врачом / аптекой", da: "Aftal med læge / apotek", nb: "Avklar med lege / apotek", sv: "Stäm av med läkare / apotek", hu: "Egyeztesd orvossal / gyógyszerésszel", el: "Συνεννοηθείτε με γιατρό / φαρμακείο"}
+
+  # --- Hilfsmittel ---
+  - name: {de: "Einmalhandschuhe", en: "Disposable gloves", fr: "Gants jetables", es: "Guantes desechables", it: "Guanti monouso", ru: "Одноразовые перчатки", da: "Engangshandsker", nb: "Engangshansker", sv: "Engångshandskar", hu: "Eldobható kesztyű", el: "Γάντια μιας χρήσης"}
+    category: hausapotheke
+    unit: pair
+    per_person: 5
+    step: 5
+  - name: {de: "Rettungsdecke", en: "Emergency blanket", fr: "Couverture de survie", es: "Manta térmica", it: "Coperta isotermica", ru: "Спасательное одеяло", da: "Redningstæppe", nb: "Folieteppe", sv: "Räddningsfilt", hu: "Mentőfólia", el: "Ισοθερμική κουβέρτα"}
+    category: hausapotheke
+    unit: pcs
+    per_person: 1
+  - name: {de: "Fieberthermometer", en: "Fever thermometer", fr: "Thermomètre médical", es: "Termómetro clínico", it: "Termometro clinico", ru: "Медицинский термометр", da: "Febertermometer", nb: "Febertermometer", sv: "Febertermometer", hu: "Lázmérő", el: "Θερμόμετρο"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+  - name: {de: "Verbandschere", en: "Bandage scissors", fr: "Ciseaux à pansement", es: "Tijeras de vendaje", it: "Forbici per bendaggi", ru: "Ножницы для бинтов", da: "Forbindingssaks", nb: "Bandasjesaks", sv: "Förbandssax", hu: "Kötszervágó olló", el: "Ψαλίδι επιδέσμων"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+  - name: {de: "Pinzette", en: "Tweezers", fr: "Pince à épiler", es: "Pinzas", it: "Pinzetta", ru: "Пинцет", da: "Pincet", nb: "Pinsett", sv: "Pincett", hu: "Csipesz", el: "Τσιμπιδάκι"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
+  - name: {de: "Zeckenzange", en: "Tick remover", fr: "Tire-tique", es: "Quitagarrapatas", it: "Pinza per zecche", ru: "Пинцет для удаления клещей", da: "Flåttang", nb: "Flåttfjerner", sv: "Fästingplockare", hu: "Kullancsfogó", el: "Τσιμπίδα για τσιμπούρια"}
+    category: hausapotheke
+    unit: pcs
+    fixed: 1
