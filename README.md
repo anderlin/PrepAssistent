@@ -42,6 +42,10 @@ Panel and backend texts live in `custom_components/prep_assistent/frontend/i18n/
 
 ### HACS (custom repository)
 
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=anderlin&repository=PrepAssistent&category=integration)
+
+Or add it manually:
+
 1. HACS → Integrations → ⋮ → *Custom repositories* → enter `https://github.com/anderlin/PrepAssistent`, type *Integration*
 2. Install "PrepAssistent", restart Home Assistant
 3. *Settings → Devices & services → Add integration → PrepAssistent*

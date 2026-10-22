@@ -1,7 +1,7 @@
 {
   "domain": "prep_assistent",
   "name": "PrepAssistent",
-  "codeowners": [],
+  "codeowners": ["@anderlin"],
   "config_flow": true,
   "dependencies": ["http", "frontend", "panel_custom", "persistent_notification"],
   "documentation": "https://github.com/anderlin/PrepAssistent",
