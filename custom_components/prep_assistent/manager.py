@@ -409,7 +409,11 @@ class PrepManager:
         return self.items[item_id]
 
     def _buy(self, item: dict[str, Any]) -> None:
-        """Erfasst einen Artikel als gekauft: Soll-Menge, Kaufdatum, ggf. Ablaufdatum."""
+        """Erfasst einen Artikel als gekauft: Soll-Menge, Kaufdatum, Ablaufdatum.
+
+        Ohne Haltbarkeit ist das neue Ablaufdatum unbekannt; das alte gehört zum
+        vorherigen Bestand und wird daher entfernt.
+        """
         today = self.today()
         if item.get("target_quantity"):
             item["quantity"] = max(item["quantity"], item["target_quantity"])
@@ -417,6 +421,8 @@ class PrepManager:
         item["opened_date"] = None
         if item.get("shelf_life_days"):
             item["expiry_date"] = (today + timedelta(days=item["shelf_life_days"])).isoformat()
+        else:
+            item["expiry_date"] = None
         item["updated_at"] = _now_iso()
 
     @callback

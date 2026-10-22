@@ -16,7 +16,7 @@ Home Assistant integration for creating and managing stockpiles: food, drinks, f
 - **Expiry warnings**: daily check at the configured time → HA notification, optional push message (`notify.*`) and event `prep_assistent_expiry` for your own automations
 - **Dashboard** in the sidebar: key figures, "Expiry at a glance", categories, lists with fill level
 - **Templates** (JSON/YAML): choose people and days → quantities are calculated → apply as a shopping list
-- **Shopping list filter**: show missing quantities only; "Record as bought" sets quantity, purchase date and (if configured) expiry date
+- **Shopping list filter**: show missing quantities only; "Record as purchased" sets quantity, purchase date and expiry date (from "shelf life after purchase"; without it the old expiry date is cleared)
 - **Sensors** for your own dashboards/automations
 - **Services** for automations and voice assistants
 - **Multilingual**: German, English, French, Spanish, Italian, Russian, Danish, Norwegian, Swedish, Hungarian, Greek
@@ -30,9 +30,13 @@ Home Assistant integration for creating and managing stockpiles: food, drinks, f
 | Notifications, name of the first list, service errors | Home Assistant system language |
 | Setup, sensors, services | HA translations (`translations/`) |
 
-Unsupported languages fall back to English. Existing items and lists keep their names – but when a template is applied again, they are recognised even after a language change.
+Unsupported languages fall back to English. Existing items and lists keep their names. When a template is applied again, its items are recognised even after a language change – as long as the template defines names as language objects (`{de: …, en: …}`); plain-string names only match exactly.
 
-Panel and backend texts live in `custom_components/prep_assistent/frontend/i18n/<language>.json`. To add a language, copy `en.json`, translate it and add the language code to `i18n.py` (`LANGUAGES`) and to `frontend/prep-common.js` (`LANGUAGES`). Plural forms are objects with the [CLDR categories](https://cldr.unicode.org/index/cldr-spec/plural-rules) (`one`, `few`, `many`, `other`).
+Panel and backend texts live in `custom_components/prep_assistent/frontend/i18n/<language>.json`. To add a language:
+
+1. Copy `frontend/i18n/en.json`, translate it and add the language code to `i18n.py` (`LANGUAGES`) and to `frontend/prep-common.js` (`LANGUAGES`).
+2. Copy `translations/en.json` to `translations/<language>.json` and translate it (setup, sensors, services).
+3. Plural forms are objects with the [CLDR categories](https://cldr.unicode.org/index/cldr-spec/plural-rules) (`one`, `few`, `many`, `other`). The panel uses `Intl.PluralRules`, but the backend (`plural_category` in `i18n.py`) only knows special rules for Russian and French – every other language uses `one`/`other`. For languages with more forms (e.g. Polish, Czech), add a rule there.
 
 ## Installation
 
@@ -62,12 +66,12 @@ Requirement: Home Assistant **2025.2** or newer.
 
 ## Shopping list (to-do)
 
-The entity `todo.prepassistent_shopping_list` (name depends on the system language) contains every item whose quantity is below its target quantity, e.g. "Rice (2 kg)", with list and storage location as description. It appears under *Settings → To-do lists*, in the HA app, and can be shown on dashboards with the to-do card.
+The entity `todo.prepassistent_shopping_list` (name depends on the system language) contains every item whose quantity is below its target quantity, e.g. "Rice (2 kg)", with list and storage location as description. It appears in the *To-do lists* panel in the sidebar, in the HA app, and can be shown on dashboards with the to-do card.
 
 | Action | Effect |
 | --- | --- |
-| Check off | Recorded as bought: quantity = target quantity, purchase date today, expiry date from "shelf life after purchase" |
-| Add (also via Assist: "Add coffee to the shopping list") | Known item: target quantity +1 above stock. New item: created in the first list with quantity 0 and target 1 |
+| Check off | Recorded as purchased: quantity is raised to the target quantity (never lowered), purchase date today; the expiry date is recalculated from "shelf life after purchase" – if that is not set, the old expiry date is cleared |
+| Add (also via Assist: "Add coffee to the PrepAssistent shopping list") | Known item: target quantity +1 (starting from the higher of target and stock). New item: created in the first list with quantity 0 and target 1 |
 | Remove | Only the need is removed (target = stock), the item itself is kept |
 
 ## Supply range

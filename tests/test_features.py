@@ -182,7 +182,7 @@ async def test_bulk_actions(hass: HomeAssistant, entry: MockConfigEntry, hass_ws
     client = await hass_ws_client(hass)
     manager = hass.data[DOMAIN]
     other = await _ws(client, {"type": "prep_assistent/list/create", "name": "Keller"})
-    a = await _add(hass, name="A", quantity=0, target_quantity=2)
+    a = await _add(hass, name="A", quantity=0, target_quantity=2, expiry_date=_iso(-5))
     b = await _add(hass, name="B", quantity=1, target_quantity=4, shelf_life_days=10)
     c = await _add(hass, name="C", quantity=1)
 
@@ -192,6 +192,7 @@ async def test_bulk_actions(hass: HomeAssistant, entry: MockConfigEntry, hass_ws
 
     await _ws(client, {"type": "prep_assistent/items/bulk", "item_ids": [a, b], "action": "buy"})
     assert (manager.items[a]["quantity"], manager.items[b]["quantity"], manager.items[b]["expiry_date"]) == (2, 4, _iso(10))
+    assert manager.items[a]["expiry_date"] is None  # ohne Haltbarkeit: altes Datum entfernt
 
     error = await _ws_error(client, {"type": "prep_assistent/items/bulk", "item_ids": [c, "gibtsnicht"], "action": "delete"})
     assert error["translation_key"] == "item_not_found"
