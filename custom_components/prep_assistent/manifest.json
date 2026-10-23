@@ -1,6 +1,7 @@
 {
   "domain": "prep_assistent",
   "name": "PrepAssistent",
+  "categories": ["productivity_information.shopping_groceries"],
   "codeowners": ["@anderlin"],
   "config_flow": true,
   "dependencies": ["http", "frontend", "panel_custom", "persistent_notification"],
